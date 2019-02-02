@@ -2,7 +2,7 @@
         <div class="main-box clearfix">
         	<!-- Logo Box -->
             <div class="logo-box">
-                <div class="logo"><a href="{{ url('/') }}"><img src="images/logo-small.png" alt="" title=""></a></div>
+                <div class="logo"><a href="{{ url('/') }}"><img src="{{asset('images/logo-small.png')}}" alt="" title=""></a></div>
             </div>
 
             <!-- Upper Right-->

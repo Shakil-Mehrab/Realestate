@@ -50,10 +50,11 @@
     <section class="agent-detail">
         <div class="auto-container">
             <div class="row">
+              @forelse($top_agents as $top_agent)
                 <div class="image-column col-lg-4 col-md-12 col-sm-12">
                     <div class="inner-column">
                         <div class="image-box">
-                            <figure class="image"><img src="images/resource/agent.jpg" alt=""></figure>
+                            <figure class="image"><img src="{{$top_agent->image}}" alt=""></figure>
                         </div>
                     </div>
                 </div>
@@ -61,26 +62,24 @@
                 <div class="content-column col-lg-8 col-md-12 col-sm-12">
                     <div class="inner-column">
                         <div class="about-agent">
-                            <h3 class="name">Badoy ghaly</h3>
+                            <h3 class="name">{{$top_agent->name}}</h3>
                             <span class="designation">Real Estate Agent</span>
                             <div class="text">
-                                <p>Jone Michal is a Certified Residential Specialist with over 10 years experience of helping local resients sell homes. He achieved success due to his commitment to the enhancement.</p>
-                                <p>A billion and trillion decipherment dream of the mind’s eye preserve and cherish that pale blue dot, colonies globular star cluster shores of the cosmic ocean billions upon billions, Euclid, a very small stage in a vast cosmic arena! Cosmic ocean Euclid culture? Rich in heavy atoms Cambrian explosion rich in heavy atoms, two ghostly white figures in hamer coveralls and helmets are soflty dancing.</p>
-                                <p>The process of content marketing entails selecting and delivering useful information to customers to establish credibility. Surprisingly, this general description and other content marketing practices can also be applied to the work of a real estate agent. Content marketing is a multi-step process, </p>
+                                <p>{{$top_agent->detail}}</p>
                             </div>
                             <div class="contact-info">
                                 <div class="row">
                                     <div class="column col-xl-4 col-lg-6 col-md-12 col-sm-12">
                                         <ul>
-                                            <li><i class="la la-phone"></i> +92 123 4567 890</li>
-                                            <li><i class="la la-envelope-o"></i> <a href="#">info@shinarealestate.com</a></li>
+                                            <li><i class="la la-phone"></i>{{$top_agent->phone}}</li>
+                                            <li><i class="la la-envelope-o"></i> <a href="#">{{$top_agent->email}}</a></li>
                                         </ul>
                                     </div>
 
                                     <div class="column col-xl-4 col-lg-6 col-md-12 col-sm-12">
                                         <ul>
                                             <li><span>Address</span></li>
-                                            <li>8542 El Paseo Grande New Yark</li>
+                                            <li>{{$top_agent->address}}</li>
                                         </ul>
                                     </div>
 
@@ -99,10 +98,60 @@
                                         </ul>
                                     </div>
                                 </div>
-                            </div>
+                            </div>                             
                         </div>
                     </div>
                 </div>
+                @empty
+                 <div class="image-column col-lg-4 col-md-12 col-sm-12">
+                    <div class="inner-column">
+                        <div class="image-box">
+                            <figure class="image"><img src="images" alt="No Agent"></figure>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-column col-lg-8 col-md-12 col-sm-12">
+                    <div class="inner-column">
+                        <div class="about-agent">
+                            <h3 class="name">Badoy ghaly</h3>
+                            <span class="designation">Real Estate Agent</span>
+                      <div class="text">
+                       <p>No Agent</p>
+                    </div>
+                <div class="contact-info">
+                    <div class="row">
+                        <div class="column col-xl-4 col-lg-6 col-md-12 col-sm-12">
+                            <ul>
+                                <li><i class="la la-phone">No Agent</i></li>
+                                <li><i class="la la-envelope-o"></i> <a href="#">No Agent</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="column col-xl-4 col-lg-6 col-md-12 col-sm-12">
+                            <ul>
+                                <li><span>Address</span></li>
+                                <li>No Agent</li>
+                            </ul>
+                        </div>
+
+                        <div class="column col-xl-4 col-lg-6 col-md-6 col-sm-12">
+                            <ul>
+                                <li><strong>Follow Us:</strong></li>
+                                <li>
+                                    <ul class="social-links">
+                                        <li><a href="#"><i class="la la-facebook"></i></a></li>
+                                        <li><a href="#"><i class="la la-twitter"></i></a></li>
+                                        <li><a href="#"><i class="la la-google-plus"></i></a></li>
+                                        <li><a href="#"><i class="la la-dribbble"></i></a></li>
+                                        <li><a href="#"><i class="la la-pinterest"></i></a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+              @endforelse
             </div>
         </div>
     </section>

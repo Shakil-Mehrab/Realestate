@@ -6,13 +6,13 @@
 <meta charset="utf-8">
 <title>Ourland - Real Estate HTML Template | Properties</title>
 <!-- Stylesheets -->
-<link href="realestate/css/bootstrap.css" rel="stylesheet">
-<link href="realestate/css/style.css" rel="stylesheet">
-<link href="realestate/css/responsive.css" rel="stylesheet">
+<link href="{{asset('realestate/css/bootstrap.css')}}" rel="stylesheet">
+<link href="{{asset('realestate/css/style.css')}}" rel="stylesheet">
+<link href="{{asset('realestate/css/responsive.css')}}" rel="stylesheet">
 <!--Color Switcher Mockup-->
-<link href="realestate/css/color-switcher-design.css" rel="stylesheet">
+<link href="{{asset('realestate/css/color-switcher-design.css')}}" rel="stylesheet">
 <!--Color Themes-->
-<link id="theme-color-file" href="realestate/css/color-themes/default-theme.css" rel="stylesheet">
+<link id="theme-color-file" href="{{asset('realestate/css/color-themes/default-theme.css')}}"  rel="stylesheet">
 
 <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
 <link rel="icon" href="images/favicon.png" type="image/x-icon">
@@ -56,18 +56,18 @@
                 <div class="row">
                     <div class="about-property col-lg-8 col-md-12 col-sm-12">
                         <h2>Single House Near Orland Park,..</h2>
-                        <div class="location"><i class="la la-map-marker"></i> Orland Park, IL 35785, Chicago, United State</div>
+                        <div class="location"><i class="la la-map-marker"></i> {{$property->address}}</div>
                         <ul class="property-info clearfix">
-                            <li><i class="flaticon-dimension"></i> 356 Sq-Ft</li>
-                            <li><i class="flaticon-bed"></i> 4 Bedrooms</li>
-                            <li><i class="flaticon-car"></i> 2 Garage</li>
-                            <li><i class="flaticon-bathtub"></i> 3 Bathroom</li>
+                            <li><i class="flaticon-dimension"></i> {{$property->area}}</li>
+                            <li><i class="flaticon-bed"></i> {{$property->nong_of_bedroom}} Bedrooms</li>
+                            <li><i class="flaticon-car"></i> {{$property->checkbox}}</li>
+                            <li><i class="flaticon-bathtub"></i> {{$property->nong_of_bathroom}} Bathroom</li>
                         </ul>
                     </div>
                     <div class="price-column col-lg-4 col-md-12 col-sm-12">
                         <span class="title">Start From</span>
-                        <div class="price">$ 13,65,000</div>
-                        <span class="status">For Sale</span>
+                        <div class="price">$ {{$property->price}}</div>
+                        <span class="status">{{$property->status}}</span>
                     </div>
                 </div>
             </div>
@@ -78,47 +78,44 @@
                         <div class="upper-box">
                             <div class="carousel-outer">
                                 <ul class="image-carousel owl-carousel owl-theme">
-                                    <li><a href="images/resource/property-detail.jpg" class="lightbox-image" title="Image Caption Here"><img src="images/resource/property-detail.jpg" alt=""></a></li>
-
-                                    <li><a href="images/resource/property-detail-2.jpg" class="lightbox-image" title="Image Caption Here"><img src="images/resource/property-detail-2.jpg" alt=""></a></li>
-
-                                    <li><a href="images/resource/property-detail-3.jpg" class="lightbox-image" title="Image Caption Here"><img src="images/resource/property-detail-3.jpg" alt=""></a></li>
-
-                                    <li><a href="images/resource/property-detail-4.jpg" class="lightbox-image" title="Image Caption Here"><img src="images/resource/property-detail-4.jpg" alt=""></a></li>
-
-                                    <li><a href="images/resource/property-detail-5.jpg" class="lightbox-image" title="Image Caption Here"><img src="images/resource/property-detail-5.jpg" alt=""></a></li>
+                                      @forelse($properties as $property)
+                                    <li><a href="{{route('property.detail')}}" class="lightbox-image" title="Image Caption Here"><img src="{{asset($property->image)}}" alt="big" style="max-height: 530px;min-height: 530px"></a></li>
+                                    @empty
+                                     <li><a href=images/resource/property-detail.jpg" class="lightbox-image" title="Image Caption Here"><img src="image" alt="No Image"></a></li>
+                                    @endforelse
                                 </ul>
                                 
                                 <ul class="thumbs-carousel owl-carousel owl-theme">
-                                    <li><img src="images/resource/property-thumb-9.jpg" alt=""></li>
-                                    <li><img src="images/resource/property-thumb-5.jpg" alt=""></li>
-                                    <li><img src="images/resource/property-thumb-8.jpg" alt=""></li>
-                                    <li><img src="images/resource/property-thumb-7.jpg" alt=""></li>
-                                    <li><img src="images/resource/property-thumb-6.jpg" alt=""></li>
+                                      @forelse($properties as $property)
+
+                                    <li><img src="{{asset($property->image)}}" alt="small" g" style="max-height: 120px;min-height: 120px"></li>
+                                      @empty
+                                      <li><img src="image" alt="No Image"></li>
+                                      @endforelse
                                 </ul>
                             </div>
                         </div>
 
                         <div class="lower-content">
                             <h3>Descripation</h3>
-                            <p>Fantastic One Bedroom Facing East In This Amazing Trump Place Doorman Building. There Is A Large Kitchen, Washer And Dryer, Great Light And Plenty Of Closet Space. In Addition, There Are Amazing Custom Made ‘Built Ins’ In The Living Room Providing Plenty Of Storage. The Building Has A Gym, Pool, Children’s Room, Valet Services, Full Time Concierge And Doorman.</p>
-                            <blockquote>Main bath has been remodeled including a large shower with a tiled sitting bench. Back yard patio includes no-maintenance cover with built in lights. extra storage inside and out.</blockquote>
-                            <p>Short sale approved at $440,000!! home with remodeled kitchen, upgraded cabinets and counterto1ps, open floorplan with spacious layout including a huge separate family room. New windows and newer roof, new airconditioning, fully permitted additonal square footage to the original home. This is a beauty. Huge master with separate sitting/dressing area that would make a perfect nursery.Bonus walk in storage closet in family room.</p>
+                            <p>{{$property->detail}}</p>
+                            <blockquote>{{$property->checkbox}}</blockquote>
+                            <p>{{$property->detail}}</p>
                         </div>
 
                         <!-- Property Features -->
                         <div class="property-features">
                             <h3>Essential Information</h3>
                             <ul class="list-style-one">
-                                <li>Price: $500,000,0</li>
-                                <li>For: Sale</li>
-                                <li>Property Types: Resident</li>
-                                <li>Area: 1000SQFT</li>
-                                <li>Country: USA </li>
-                                <li>City: Sterling</li>
+                                <li>Price: ${{$property->price}}</li>
+                                <li>For: {{$property->status}}</li>
+                                <li>Property Types: {{$property->property_type}}</li>
+                                <li>Area: {{$property->area}} sqFt</li>
+                                <li>Country: {{$property->country}} </li>
+                                <li>City: {{$property->state}}</li>
                                 <li>Garages: 3 </li>
-                                <li>Bedrooms: 6 </li>
-                                <li>Bathrooms: 4</li>
+                                <li>Bedrooms: {{$property->nong_of_bedroom}} </li>
+                                <li>Bathrooms: {{$property->nong_of_bathroom}}</li>
                             </ul>
                         </div>
 
@@ -126,7 +123,7 @@
                         <div class="property-features">
                             <h3>Home Amenities</h3>
                             <ul class="list-style-one">
-                                <li>Air Conditioning</li>
+                                <li>{{$property->checkbox}}</li>
                                 <li>Alarm System</li>
                                 <li>Basketball court</li>
                                 <li>Bedding</li>
@@ -165,7 +162,7 @@
                                 <!--Tab / Active Tab-->
                                 <div class="tab active-tab" id="groud-floor">
                                     <div class="image-box">
-                                        <figure class="image"><img src="images/resource/house-map.jpg" alt=""></figure>
+                                        <figure class="image"><img src="{{$property->image}}" alt=""></figure>
                                     </div>
                                 </div>
 
@@ -535,23 +532,23 @@
     <a href="#" class="purchase-btn">Purchase now $17</a>
 </div><!-- End Color Switcher -->
 
-<script src="realestate/js/jquery.js"></script> 
-<script src="realestate/js/popper.min.js"></script>
-<script src="realestate/js/bootstrap.min.js"></script>
-<script src="realestate/js/jquery-ui.js"></script>
-<script src="realestate/js/jquery.fancybox.js"></script>
-<script src="realestate/js/owl.js"></script>
-<script src="realestate/js/wow.js"></script>
-<script src="realestate/js/isotope.js"></script>
-<script src="realestate/js/mixitup.js"></script>
-<script src="realestate/js/appear.js"></script>
+<script src="{{asset('realestate/js/jquery.js')}}"></script> 
+<script src="{{asset('realestate/js/popper.min.js')}}"></script>
+<script src="{{asset('realestate/js/bootstrap.min.js')}}"></script>
+<script src="{{asset('realestate/js/jquery-ui.js')}}"></script>
+<script src="{{asset('realestate/js/jquery.fancybox.js')}}"></script>
+<script src="{{asset('realestate/js/owl.js')}}"></script>
+<script src="{{asset('realestate/js/wow.js')}}"></script>
+<script src="{{asset('realestate/js/isotope.js')}}"></script>
+<script src="{{asset('realestate/js/mixitup.js')}}"></script>
+<script src="{{asset('realestate/js/appear.js')}}"></script>
 <!--Google Map APi Key-->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB2uu6KHbLc_y7fyAVA4dpqSVM4w9ZnnUw"></script>
-<script src="realestate/js/map-script.js"></script>
+<script src="{{asset('https://maps.googleapis.com/maps/api/js?key=AIzaSyB2uu6KHbLc_y7fyAVA4dpqSVM4w9ZnnUw')}}"></script>
+<script src="{{asset('realestate/js/map-script.js')}}"></script>
 <!--End Google Map APi-->
-<script src="realestate/js/script.js"></script>
+<script src="{{asset('realestate/js/script.js')}}"></script>
 <!-- Color Setting -->
-<script src="realestate/js/color-settings.js"></script>
+<script src="{{asset('realestate/js/color-settings.js')}}"></script>
 </body>
 
 <!-- Tiger Cage/property-detail.html by g4bbar, Thu, 24 Jan 2019 15:35:35 GMT -->

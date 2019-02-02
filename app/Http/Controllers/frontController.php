@@ -3,7 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Submit_property;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
+use App\Model\Property;
+use App\Model\Review;
+use App\Model\Agent;
+use App\Like;
+
+use Session;
+session_start();
 
 class frontController extends Controller
 {
@@ -48,7 +56,10 @@ class frontController extends Controller
         return view("front.page.about");
     }
      public function getAgentDetail(){
-        return view("front.page.agent-detail");
+        $top_agents=Agent::orderBY('id','desc')->limit(1)->get();
+        $agent_id=Session::get('agent_id');
+        $agent_last_two=Agent::orderBY('id','desc')->where('id','!> and =',$agent_id)->limit(2)->get();
+        return view("front.page.agent-detail",compact(['top_agents','agent_last_two']));
     }
       public function getProperties(){
         return view("front.page.properties");
@@ -79,88 +90,104 @@ class frontController extends Controller
     }
     public function getContact(){
         return view("front.page.contact");
-    }
+    } 
 
-    //Admin
-     public function getBookings(){
-        return view("admin.bookings");
-    }
-     public function getFavouritedProperties(){
-        return view("admin.my-properties");
-    }
-     public function getMessage(){
-        return view("admin.message");
-    }
-     public function getMyInvoices(){
-        return view("admin.my-invoices");
-    }
-     public function getMyProfile(){
-        return view("admin.my-profile");
-    }
-     public function getMyProperties(){
-        return view("admin.my-properties");
-    }
-     public function getSubmitProperty(){
-        return view("admin.submit-property");
-    }
-       public function postSubmitProperty(Request $request){
 
-        $this->validate($request,[
-            "title"=>"required", 
-            "property_type"=>"required", 
-            "country"=>"required", 
-            "status"=>"required", 
-            "area"=>"required", 
-            "nong_of_kitchen"=>"required", 
-            "nong_of_bedroom"=>"required", 
-            "nong_of_bathroom"=>"required", 
-            "address"=>"required", 
-            "state"=>"required", 
-            "postal_code"=>"required",
-            "detail"=>"required", 
-            "name"=>"required",             
-            "email"=>"required", 
-            "phone"=>"required|max:11",  
-         ]);
-            $submit_properties=new Submit_property();
-            $submit_properties->title=$request['title'];
-            $submit_properties->property_type=$request['property_type'];
-            $submit_properties->country=$request['country'];
-            $submit_properties->status=$request['status'];
-            $submit_properties->area=$request['area'];
-            $submit_properties->nong_of_kitchen=$request['nong_of_kitchen'];
-            $submit_properties->nong_of_bedroom=$request['nong_of_bedroom'];
-            $submit_properties->nong_of_bathroom=$request['nong_of_bathroom'];
-            $submit_properties->address=$request['address'];
-            $submit_properties->state=$request['state'];
-            $submit_properties->postal_code=$request['postal_code'];
-            $submit_properties->detail=$request['detail'];
 
-            $checkbox_array=$request['checkbox'];
-            $checkbox_stirng=implode(",",$checkbox_array);
-            $submit_properties->checkbox=$checkbox_stirng;
+    //showing Page
+    public function welcome()
+    {                  
+        $most_popular_properties=Property::orderBY('views','desc')->limit(2)->get();
+        //Recent Property                 
+        $recent_slide_properties=Property::orderBY('id','desc')->limit(3)->get();
+        $recent_slide_lower_properties=Property::orderBY('id','desc')->limit(1)->get();
 
-            $submit_properties->name=$request['name'];
-            $submit_properties->email=$request['email']; 
-            $submit_properties->phone=$request['phone'];          
-            $image=$request->file("image"); 
+         $recent_slide_properties_id=Session::get('slide_property_id');
+        $second_recent_slide_properties=Property::orderBY('id','desc')->where('id','<',$recent_slide_properties_id)->limit(3)->get();
+        $second_recent_slide_lower_properties=Property::orderBY('id','desc')->where('id','<',$recent_slide_properties_id)->limit(1)->get();
 
-         if($image){
-              //  $image_name=str_random(20);
-              //  $ext=strtolower($image->getclientoriginalExtension());
-            // $image_full_name=$image_name.".".$ext;
-            $image_full_name=$image->getClientOriginalName();
-             $upload_path="images/";
-             $image_url=$upload_path.$image_full_name;
-             $success=$image->move($upload_path,$image_full_name);
-            if($success){
-              $submit_properties->image=$image_url;
-              $submit_properties->save();
-              return redirect()->back()->withMessage('Property submitted succesfully');
-            }
-        }
-        $submit_properties->save();
-        return redirect()->back()->withMessage('Property submitted Not succesfully');
-    }
+
+        $second_recent_slide_properties_id=Session::get('second_recent_slide_property_id');
+        $recent_mid_properties=Property::orderBY('id','desc')->where('id','<=',$recent_slide_properties_id)->limit(2)->get();
+
+        $second_recent_slide_properties_id=Session::get('second_recent_slide_properties_id');
+        $recent_last_properties=Property::orderBY('id','desc')->limit(2)->get();
+        //Popular Property
+        $popular_properties=Property::orderBY('views','desc')->limit(3)->get();
+
+        $popular_first_three_viwes=Session::get('popular_first_three_viwes');
+        $popular_properties_small=Property::orderBY('views','desc')->where('views','!> and =',$popular_first_three_viwes)->limit(4)->get();
+        //Agent
+        $agents_link=Agent::orderBY('id','desc')->limit(4)->get();
+        $agents=Agent::orderBY('id','desc')->limit(6)->get();
+
+
+        return view('welcome',compact(['most_popular_properties','recent_slide_properties','recent_slide_lower_properties','second_recent_slide_properties','second_recent_slide_lower_properties','recent_mid_properties','recent_last_properties','popular_properties','popular_properties_small','agents_link','agents','popular_first_three_id']));
+    }  
+     public function getpropertyMoreDetail($id)
+    {                  
+        $property=Property::find($id)->first();
+        $property->views=$property->views+1;
+        $property->update();
+        $properties=Property::orderBY('id','desc')->limit(5)->get();
+
+        // $property=Property::orderBY('id','desc')->where('category_id',$new->category_id)->where('id','!=',$new->id)->limit(4)->get();
+      return view('front.page.property-detail',compact(['property','properties'])); 
+        // $most_popular_properties=Property::orderBY('views','desc')->limit(2)->get();
+        // //Recent Property                 
+        // $recent_slide_properties=Property::orderBY('id','desc')->limit(3)->get();
+        // $recent_slide_lower_properties=Property::orderBY('id','desc')->limit(1)->get();
+
+        //  $recent_slide_properties_id=Session::get('slide_property_id');
+        // $second_recent_slide_properties=Property::orderBY('id','desc')->where('id','<',$recent_slide_properties_id)->limit(3)->get();
+        // $second_recent_slide_lower_properties=Property::orderBY('id','desc')->where('id','<',$recent_slide_properties_id)->limit(1)->get();
+
+
+        // $second_recent_slide_properties_id=Session::get('second_recent_slide_property_id');
+        // $recent_mid_properties=Property::orderBY('id','desc')->where('id','<=',$recent_slide_properties_id)->limit(2)->get();
+
+        // $second_recent_slide_properties_id=Session::get('second_recent_slide_properties_id');
+        // $recent_last_properties=Property::orderBY('id','desc')->limit(2)->get();
+        // //Popular Property
+        // $popular_properties=Property::orderBY('views','desc')->limit(3)->get();
+
+        // $popular_first_three_viwes=Session::get('popular_first_three_viwes');
+        // $popular_properties_small=Property::orderBY('views','desc')->where('views','!> and =',$popular_first_three_viwes)->limit(4)->get();
+        // //Agent
+        // $agents_link=Agent::orderBY('id','desc')->limit(4)->get();
+        // $agents=Agent::orderBY('id','desc')->limit(6)->get();
+
+
+        // return view('front.all-property',compact(['most_popular_properties','recent_slide_properties','recent_slide_lower_properties','second_recent_slide_properties','second_recent_slide_lower_properties','recent_mid_properties','recent_last_properties','popular_properties','popular_properties_small','agents_link','agents','popular_first_three_id']));
+    }  
+     public function getAllProperty(){
+        $all_properties=Property::orderBY('id','desc')->get();
+        return view('front.all-property',compact(['all_properties']));
+    } 
+    public function getPopularProperties(){
+        $all_popular_properties=Property::orderBY('views','desc')->limit(20)->get();
+        return view('front.page.all-popular-property',compact(['all_popular_properties']));
+    } 
+
+   public function toggleLike(Request $request){
+       $threadId=Input::get('threadId');
+       $user_like=Like::where('user_id',auth()->id())
+                      ->where('property_id',$threadId)->first();
+       if($user_like){
+        $like=Like::where('user_id',auth()->id())
+                      ->where('property_id',$threadId)->first();
+        $like->delete();
+       
+        return response()->json(['status'=>'success','message'=>'unliked']);
+       }
+       else{
+          $like=new Like();
+          $like->property_id=$threadId;
+          $request->user()->likes()->save($like);
+          
+      return response()->json(['status'=>'success','message'=>'liked']);
+   }
+ 
+  }
 
 }

@@ -11,18 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/','frontController@welcome');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
-Route::get('/dashboard', [
-    'uses'=>'frontController@getDashboard',
-    'as'=>'dashboard'
-    ]);
 
 Route::get('/comming-soon', [
     'uses'=>'frontController@getCommingSoonProperty',
@@ -77,6 +70,10 @@ Route::get('/properties', [
     'uses'=>'frontController@getProperties',
     'as'=>'properties'
     ]);
+Route::get('/popular-properties', [
+    'uses'=>'frontController@getPopularProperties',
+    'as'=>'popular.properties'
+    ]);
 Route::get('/property-list-view', [
     'uses'=>'frontController@getPropertyListView',
     'as'=>'property.list.view'
@@ -88,6 +85,10 @@ Route::get('/property-grid-view', [
 Route::get('/property-modern-view', [
     'uses'=>'frontController@getPropertyModernView',
     'as'=>'property.modern.view'
+    ]);
+Route::get('/property-more-detail/{property_id}', [
+    'uses'=>'frontController@getpropertyMoreDetail',
+    'as'=>'property.more.detail'
     ]);
 Route::get('/property-detail', [
     'uses'=>'frontController@getpropertyDetail',
@@ -113,40 +114,80 @@ Route::get('/contact', [
     'uses'=>'frontController@getContact',
     'as'=>'contact'
     ]);
+Route::post('/target-property-search', [
+    'uses'=>'frontController@postTargetPropertySearch',
+    'as'=>'target.property.search'
+    ]);
+Route::get('/all-property', [
+    'uses'=>'frontController@getAllProperty',
+    'as'=>'all.property'
+    ]);
+Route::post('/like-property', [
+    'uses'=>'frontController@toggleLike',
+    'as'=>'toggleLike'
+    ]);
 
 //Admin
 Route::group(['prefix'=>'admin','middleware'=>['auth']],function(){
+Route::get('/dashboard', [
+    'uses'=>'frontController@getDashboard',
+    'as'=>'dashboard'
+    ]);
 Route::get('/bookings', [
-    'uses'=>'frontController@getBookings',
+    'uses'=>'AdminController@getBookings',
     'as'=>'bookings'
     ]);
 Route::get('/favourited-properties', [
-    'uses'=>'frontController@getFavouritedProperties',
+    'uses'=>'AdminController@getFavouritedProperties',
     'as'=>'favourited.properties'
     ]);
 Route::get('/messege', [
-    'uses'=>'frontController@getMessage',
+    'uses'=>'AdminController@getMessage',
     'as'=>'message'
     ]);
 Route::get('/my-invouces', [
-    'uses'=>'frontController@getMyInvoices',
+    'uses'=>'AdminController@getMyInvoices',
     'as'=>'my.invoices'
     ]);
 Route::get('/my-profile', [
-    'uses'=>'frontController@getMyProfile',
+    'uses'=>'AdminController@getMyProfile',
     'as'=>'my.profile'
     ]);
 Route::get('/my-properties', [
-    'uses'=>'frontController@getMyProperties',
+    'uses'=>'AdminController@getMyProperties',
     'as'=>'my.properties'
     ]);
 Route::get('/property-input', [
-    'uses'=>'frontController@getPropertyInput',
+    'uses'=>'AdminController@getPropertyInput',
     'as'=>'property.input'
     ]);
+Route::get('/create-agent', [
+    'uses'=>'AdminController@getCreateAgent',
+    'as'=>'create.agent'
+    ]);
+Route::post('/post-agent', [
+    'uses'=>'AdminController@postSubmitAgent',
+    'as'=>'post.agent'
+    ]);
 Route::post('/post-property', [
-    'uses'=>'frontController@postSubmitProperty',
+    'uses'=>'AdminController@postSubmitProperty',
     'as'=>'post.property'
+    ]);
+Route::get('/view-property', [
+    'uses'=>'AdminController@getViewProperty',
+    'as'=>'property.view'
+    ]);
+Route::get('/edit-property', [
+    'uses'=>'AdminController@getEditProperty',
+    'as'=>'property.edit'
+    ]);
+Route::post('/edited-property', [
+    'uses'=>'AdminController@postEditedProperty',
+    'as'=>'property.edited'
+    ]);
+Route::get('/delete-property', [
+    'uses'=>'AdminController@getDeleteProperty',
+    'as'=>'property.delete'
     ]);
 
 });

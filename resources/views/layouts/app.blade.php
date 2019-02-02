@@ -90,7 +90,7 @@
 <link href="{{asset('realestate/admin/css/bootstrap.css')}}" rel="stylesheet">
 <link href="{{asset('realestate/admin/css/style.css')}}" rel="stylesheet">
 <link href="{{asset('realestate/admin/css/responsive.css')}}" rel="stylesheet">
-
+ <link href="{{asset('style/admin/bootstrap/awesome-font/css/fontawesome-all.min.css')}}" rel="stylesheet">
 <link rel="shortcut icon" href="{{asset('realestate/admin/images/favicon.png')}}" type="image/x-icon">
 <link rel="icon" href="{{asset('realestate/admin/images/favicon.png')}}" type="image/x-icon">
 <!-- Responsive -->
@@ -135,10 +135,10 @@
             </div>
         </div>
     </div>
-
-
 </div>
-    
+@include('admin.dashboard-includes.footer')
+
+
 <script src="{{asset('realestate/admin/js/jquery.js')}}"></script> 
 <script src="{{asset('realestate/admin/js/popper.min.js')}}"></script>
 <script src="{{asset('realestate/admin/js/bootstrap.min.js')}}"></script>
@@ -148,6 +148,4 @@
 <script src="{{asset('realestate/admin/js/appear.js')}}"></script>
 <script src="{{asset('realestate/admin/js/script.js')}}"></script>
 </body>
-
-<!-- Tiger Cage/admin/dashboard.html by g4bbar, Thu, 24 Jan 2019 15:35:55 GMT -->
 </html>

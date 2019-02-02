@@ -2,13 +2,16 @@
         <div class="auto-container">
             <div class="inner-container clearfix">
                 <div class="top-left">
-                    <div class="text"><span>Welcome</span> to Ourland Real Estate - Making Business Better</div>
+                    <div class="text">
+                     <a href="{{ url('/') }}"><img src="{{asset('images/logo-small.png')}}" alt="" title=""></a>
+                        <span>Welcome</span> to Ourland Real Estate - Making Business Better
+                    </div>
                 </div>
                 <div class="top-right clearfix">
                     <ul class="clearfix">
                        @if (Route::has('login'))
 					        @auth
-							<li><a href="{{ url('/home') }}">Dashboard</a></span></li>
+							<li><a href="{{ url('/home') }}">Dashboard</a></li>
 							@else
 							<li><a href="{{route('login')}}">Login</a></li>
 							<li><a href="{{route('register')}}">Sign Up</a></li>

@@ -25,20 +25,6 @@
                                     <option value="apartment">Apartments</option>
                                 </select>
                             </div>
-
-                            <!-- Form Group -->
-                            <div class="form-group col-lg-3 col-md-6 col-sm-12">
-                                <label>country</label>
-                                <select class="custom-select-box" name="country" value="{{Request::old('country')}}">
-                                    <option value="bangladesh">Bangladesh</option>
-                                    <option value="India">India</option>
-                                    <option value="nepal">Nepal</option>
-                                    <option value="pakistan">Pakistan</option>
-                                    <option value="australia">Australia</option>
-                                    <option value="singapore">Singapore</option>
-                                </select>
-                            </div>
-
                             <!-- Form Group -->
                             <div class="form-group col-lg-3 col-md-6 col-sm-12">
                                 <label>Status</label>
@@ -97,6 +83,22 @@
                                     </select>
                                 </div>
                             </div>
+                            <div class="form-group col-lg-3 col-md-6 col-sm-12">
+                                <div class="range-slider-one clearfix">
+                                    <label>Gourage</label>
+                                    <select class="custom-select-box" name="nong_of_gourage" value="{{Request::old('nong_of_gourage')}}">
+                                        <option value="1">01 Gourage</option>
+                                        <option value="2">02 Gourage</option>
+                                        <option value="3">03 Gourage</option>
+                                        <option value="4">04 Gourage</option>
+                                        <option value="5">05 Gourage</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group col-lg-3 col-md-6 col-sm-12">
+                                <label>Price</label>
+                                <input type="text" name="price" placeholder="Price(US-$)" required value="{{Request::old('price')}}">
+                            </div>
                         </div>
 
                         <div class="title"><h3>Address</h3></div>
@@ -118,20 +120,26 @@
                                     <option value="gopalgonj">Gopalgonj</option>
                                     <option value="gazipur">Gazipur</option>
                                 </select>
+                            </div>                          
+                            <!-- Form Group -->
+                            <div class="form-group col-lg-3 col-md-6 col-sm-12">
+                                <label>Location</label>
+                                <select class="custom-select-box" name="location" value="{{Request::old('location')}}">
+                                    <option value="basundhara">Basubdhara</option>
+                                    <option value="purbachal">Purbachal</option>
+                                </select>
                             </div>
 
                             <!-- Form Group -->
                             <div class="form-group col-lg-3 col-md-6 col-sm-12">
-                                <label>Postal Code</label>
-                                <input type="text" name="postal_code" placeholder="Postal Code" required value="{{Request::old('postal_code')}}">
-                            </div>
-
-                            <!-- Form Group -->
-                            <div class="form-group col-lg-3 col-md-6 col-sm-12">
-                                <label>Status</label>
-                                <select class="custom-select-box" name="status" value="{{Request::old('status')}}">
-                                    <option value="sale">Sale</option>
-                                    <option value="rent">Rent</option>
+                                <label>country</label>
+                                <select class="custom-select-box" name="country" value="{{Request::old('country')}}">
+                                    <option value="bangladesh">Bangladesh</option>
+                                    <option value="India">India</option>
+                                    <option value="nepal">Nepal</option>
+                                    <option value="pakistan">Pakistan</option>
+                                    <option value="australia">Australia</option>
+                                    <option value="singapore">Singapore</option>
                                 </select>
                             </div>
                         </div>
@@ -140,9 +148,7 @@
                         <div class="row">
                         	<!-- Form Group -->
                             <div class="form-group col-lg-12">
-                                <div id="myDropZone" name="image" class="dropzone dropzone-design">
-                                    <div class="dz-default dz-message" name="image"><span>Drop files here to upload</span></div>
-                                </div>
+                                 <input type="file" class='form-control' class="form-control-file" name='image' id="exampleInputFile2" aria-describedby="fileHelp">
                             </div>
                         </div>
 

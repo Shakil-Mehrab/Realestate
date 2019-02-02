@@ -8,7 +8,20 @@
                     </ul>
                 </div>
                 <div class="top-right">
-                    <div class="btn-box"><a href="{{route('property.input')}}" class="theme-btn btn-style-four">Submit Property</a></div>
+                    <div class="btn-box">
+                       @if (Route::has('login'))
+                            @auth
+                           <a href="{{route('property.input')}}" class="theme-btn btn-style-four">Submit Property</a>
+                            
+                            @else
+                            <a href="{{route('login')}}" class="theme-btn btn-style-four">Login</a>
+                            <a href="{{route('register')}}" class="theme-btn btn-style-four">Sign Up</a>
+                            @endauth
+                       @endif
+
+
+
+                    </div>
                 </div>
             </div>
         </div>

@@ -9,6 +9,7 @@
                 <li><a href="{{route('my.invoices')}}"><i class="pe-7s-note2"></i>My Invoices</a></li>
                 <li><a href="{{route('favourited.properties')}}"><i class="pe-7s-like2"></i>Favorited Properties</a></li>
                 <li><a href="{{route('property.input')}}"><i class="pe-7s-up-arrow"></i>Submit Property</a></li>
+                <li><a href="{{route('create.agent')}}"><i class="pe-7s-up-arrow"></i>Create Agent</a></li>
                 <li><a href="{{route('my.profile')}}"><i class="pe-7s-user"></i>My Profile</a></li>
                 <li> {{--   logout --}}
                     <a class="dropdown-item" href="{{ route('logout') }}"

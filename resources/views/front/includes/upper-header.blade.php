@@ -1,11 +1,6 @@
  <div class="header-upper">
             <div class="auto-container">
-                <div class="clearfix">
-                    
-                    <div class="logo-outer">
-                        <div class="logo"><a href="{{url('/')}}" ><img src="images/logo-3.png" alt="" title=""></a></div>
-                    </div>
-                    
+                <div class="clearfix">                    
                     <div class="upper-right clearfix">
                         
                         <!--Info Box-->

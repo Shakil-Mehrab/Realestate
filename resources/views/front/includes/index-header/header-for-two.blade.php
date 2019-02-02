@@ -1,6 +1,6 @@
     <header class="main-header header-style-two">
         <!--Header Top-->
-   @include('front.includes.top-header') 
+   @include('front.includes.top-login-header') 
         <!-- End Header Top -->
 
         <!-- Header Lower -->

@@ -1,9 +1,15 @@
+@php
+use App\Model\Property;
+use App\Model\Review;
+$total_property=Property::all()->count('id');
+$total_review=Review::all()->count('id');
+@endphp
 <div class="row">
     <div class="col-lg-3 col-md-6 col-sm-6">
         <div class="ui-item bg-success">
             <div class="left">
-                <h4>242</h4>
-                <p>Active Listings</p>
+                <h4>{{$total_property}}</h4>
+                <p>Properties</p>
             </div>
             <div class="right">
                 <i class="la la-map-marker"></i>
@@ -13,7 +19,7 @@
     <div class="col-lg-3 col-md-6 col-sm-6">
         <div class="ui-item bg-warning">
             <div class="left">
-                <h4>1242</h4>
+                <h4>{{$total_review}}</h4>
                 <p>Listing Views</p>
             </div>
             <div class="right">
@@ -24,7 +30,7 @@
     <div class="col-lg-3 col-md-6 col-sm-6">
         <div class="ui-item bg-active">
             <div class="left">
-                <h4>786</h4>
+                <h4>{{$total_review}}</h4>
                 <p>Reviews</p>
             </div>
             <div class="right">
@@ -44,3 +50,6 @@
         </div>
     </div>
 </div>
+
+
+
