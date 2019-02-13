@@ -223,7 +223,7 @@
                             <li><a href="#">{{$slide_property->comments()->count()}} Coments</a></li>
                             <li><a href="#">@include('front.includes.rating.recent-slide-rating')</a>,</li>
                         </ul>
-                        <h3><a href="{{route('all.property')}}">{{$slide_property->title}}</a></h3>
+                        <h3><a href="{{route('property.more.detail',$slide_property->id)}}">{{$slide_property->title}}</a></h3>
                         <div class="lucation"><i class="la la-map-marker"></i> {{$slide_property->address}}</div>
                         <ul class="property-info clearfix">
                             <li><i class="flaticon-dimension"></i>{{$slide_property->area}} sqFt </li>
@@ -250,6 +250,8 @@
             <!-- mid recent property -->
              <div class="property-block col-lg-4 col-md-6 col-sm-12">
                     <div class="inner-box">
+                        @forelse($recent_mid_properties as $recent_mid_property)
+
                     <div class="image-box">
                             <figure class="image"><img src="{{asset($recent_mid_property->image)}}" alt="" style="max-height:320px;min-height:320px"></figure>
                             <span class="for">{{$recent_mid_property->status}}</span>
@@ -279,6 +281,9 @@
                             <div class="price">$ {{$recent_mid_property->price}}</div>
                         </div>
                      </div>
+                     @empty
+                     <figure class="image"><img src="image" alt="No Property"></figure>
+                     @endforelse
                     </div>
                     <br>
             </div>

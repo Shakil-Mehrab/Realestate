@@ -36,65 +36,39 @@ class frontController extends Controller
         //Recent Property                 
         $recent_slide_properties=Property::orderBY('id','desc')->limit(6)->get();
         //recent mid Property
-        $recent_slide_properties_four=Property::orderBY('id','desc')->limit(7)->get();
-        if($recent_slide_properties_four){
-            foreach ($recent_slide_properties_four as $recent_slide_propertie_four) {
-               $recent_slide_last_id=$recent_slide_propertie_four->id;
-            }
-        }
-        $recent_mid_property=Property::find($recent_slide_last_id);
-        //last property
         $recent_last_properties=Property::orderBY('id','desc')->limit(1)->get();
+        //last property
+        $recent_mid_properties=Property::orderBY('id','desc')->limit(1)->get();
         //Popular Property
         $popular_first_three_properties=Property::orderBY('views','desc')->limit(3)->get();
         //Poppular small
-        $recent_slide_properties_four=Property::orderBY('views','desc')->limit(4)->get();
-        if($recent_slide_properties_four){
-            foreach ($recent_slide_properties_four as $recent_slide_propertie_four) {
-               $recent_slide_last_id=$recent_slide_propertie_four->views;
-            }
-        }
-        $popular_properties_small=Property::orderBY('views','desc')->where('views','<',$recent_slide_last_id)->limit(4)->get();
+        $popular_properties_small=Property::orderBY('views','desc')->limit(4)->get();
         //Agent
         $agents_link=Agent::orderBY('id','desc')->limit(4)->get();
         $agents=Agent::orderBY('id','desc')->limit(6)->get();
         $categories=Category::orderBY('id','desc')->limit(6)->get();
         $select_properties=Property::all();
-
-        return view('front.page.index-1',compact(['most_popular_properties','recent_slide_properties','recent_mid_property','recent_last_properties','popular_first_three_properties','popular_properties_small','agents_link','agents','categories','select_properties','recent_slide_last_id']));
+        return view('front.page.index-1',compact(['most_popular_properties','recent_slide_properties','recent_mid_properties','recent_last_properties','popular_first_three_properties','popular_properties_small','agents_link','agents','categories','select_properties','recent_slide_last_id']));
         }
     	
      public function getHeaderTwo(){
-    	      $most_popular_properties=Property::orderBY('views','desc')->limit(2)->get();
+    	$most_popular_properties=Property::orderBY('views','desc')->limit(2)->get();
         //Recent Property                 
         $recent_slide_properties=Property::orderBY('id','desc')->limit(6)->get();
         //recent mid Property
-        $recent_slide_properties_four=Property::orderBY('id','desc')->limit(7)->get();
-        if($recent_slide_properties_four){
-            foreach ($recent_slide_properties_four as $recent_slide_propertie_four) {
-               $recent_slide_last_id=$recent_slide_propertie_four->id;
-            }
-        }
-        $recent_mid_property=Property::find($recent_slide_last_id);
-        //last property
         $recent_last_properties=Property::orderBY('id','desc')->limit(1)->get();
+        //last property
+        $recent_mid_properties=Property::orderBY('id','desc')->limit(1)->get();
         //Popular Property
         $popular_first_three_properties=Property::orderBY('views','desc')->limit(3)->get();
         //Poppular small
-        $recent_slide_properties_four=Property::orderBY('views','desc')->limit(4)->get();
-        if($recent_slide_properties_four){
-            foreach ($recent_slide_properties_four as $recent_slide_propertie_four) {
-               $recent_slide_last_id=$recent_slide_propertie_four->views;
-            }
-        }
-        $popular_properties_small=Property::orderBY('views','desc')->where('views','<',$recent_slide_last_id)->limit(4)->get();
+        $popular_properties_small=Property::orderBY('views','desc')->limit(4)->get();
         //Agent
         $agents_link=Agent::orderBY('id','desc')->limit(4)->get();
         $agents=Agent::orderBY('id','desc')->limit(6)->get();
         $categories=Category::orderBY('id','desc')->limit(6)->get();
         $select_properties=Property::all();
-
-        return view('front.page.index-2',compact(['most_popular_properties','recent_slide_properties','recent_mid_property','recent_last_properties','popular_first_three_properties','popular_properties_small','agents_link','agents','categories','select_properties','recent_slide_last_id']));
+        return view('front.page.index-2',compact(['most_popular_properties','recent_slide_properties','recent_mid_properties','recent_last_properties','popular_first_three_properties','popular_properties_small','agents_link','agents','categories','select_properties','recent_slide_last_id']));
         }
      public function getHeaderThree(){
     	return view("front.page.index-3");
@@ -154,32 +128,20 @@ class frontController extends Controller
         //Recent Property                 
         $recent_slide_properties=Property::orderBY('id','desc')->limit(6)->get();
         //recent mid Property
-        $recent_slide_properties_four=Property::orderBY('id','desc')->limit(7)->get();
-        if($recent_slide_properties_four){
-            foreach ($recent_slide_properties_four as $recent_slide_propertie_four) {
-               $recent_slide_last_id=$recent_slide_propertie_four->id;
-            }
-        }
-        $recent_mid_property=Property::find($recent_slide_last_id);
-        //last property
         $recent_last_properties=Property::orderBY('id','desc')->limit(1)->get();
+        //last property
+        $recent_mid_properties=Property::orderBY('id','desc')->limit(1)->get();
         //Popular Property
         $popular_first_three_properties=Property::orderBY('views','desc')->limit(3)->get();
         //Poppular small
-        $recent_slide_properties_four=Property::orderBY('views','desc')->limit(4)->get();
-        if($recent_slide_properties_four){
-            foreach ($recent_slide_properties_four as $recent_slide_propertie_four) {
-               $recent_slide_last_id=$recent_slide_propertie_four->views;
-            }
-        }
-        $popular_properties_small=Property::orderBY('views','desc')->where('views','<',$recent_slide_last_id)->limit(4)->get();
+        $popular_properties_small=Property::orderBY('views','desc')->limit(4)->get();
         //Agent
         $agents_link=Agent::orderBY('id','desc')->limit(4)->get();
         $agents=Agent::orderBY('id','desc')->limit(6)->get();
         $categories=Category::orderBY('id','desc')->limit(6)->get();
         $select_properties=Property::all();
 
-        return view('welcome',compact(['most_popular_properties','recent_slide_properties','recent_mid_property','recent_last_properties','popular_first_three_properties','popular_properties_small','agents_link','agents','categories','select_properties','recent_slide_last_id']));
+        return view('welcome',compact(['most_popular_properties','recent_slide_properties','recent_mid_properties','recent_last_properties','popular_first_three_properties','popular_properties_small','agents_link','agents','categories','select_properties','recent_slide_last_id']));
         }
      
     

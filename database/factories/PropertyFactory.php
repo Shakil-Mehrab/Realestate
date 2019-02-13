@@ -13,6 +13,7 @@ $factory->define(App\Model\Property::class, function (Faker $faker) {
         'nong_of_kitchen' => $faker->numberBetween(1,3),
         'nong_of_bedroom' => $faker->numberBetween(5,10),
         'nong_of_bathroom' => $faker->numberBetween(2,4),
+        'nong_of_gourage' => $faker->numberBetween(2,4),
         'address' => $faker->address,                           
         'state' => $faker->city,
         'price' => $faker->numberBetween(100,1000),

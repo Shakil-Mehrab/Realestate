@@ -115,8 +115,7 @@
                             
                             <h3>Descripation</h3>
                             <p>{{$single_property->detail}}</p>
-                            <blockquote>{{$single_property->checkbox}}</blockquote>
-                            <p>{{$single_property->detail}}</p>
+                         
                         </div>
 
                         <!-- Property Features -->

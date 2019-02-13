@@ -250,6 +250,8 @@
             <!-- mid recent property -->
              <div class="property-block col-lg-4 col-md-6 col-sm-12">
                     <div class="inner-box">
+                        @forelse($recent_mid_properties as $recent_mid_property)
+
                     <div class="image-box">
                             <figure class="image"><img src="{{asset($recent_mid_property->image)}}" alt="" style="max-height:320px;min-height:320px"></figure>
                             <span class="for">{{$recent_mid_property->status}}</span>
@@ -279,6 +281,9 @@
                             <div class="price">$ {{$recent_mid_property->price}}</div>
                         </div>
                      </div>
+                     @empty
+                     <figure class="image"><img src="image" alt="No Property"></figure>
+                     @endforelse
                     </div>
                     <br>
             </div>

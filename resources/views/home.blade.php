@@ -70,11 +70,17 @@
                             <td><h4></h4></td>
                             <td><h4></h4></td>
                             <td><h4></h4></td>
-                            <td><h4>No product</h4></td>
+                            <td><h4></h4></td>
+                            <td><h4></h4></td>
+                            <td><h4>No Property</h4></td>
                             <td><h4></h4></td>
                             <td><h4></h4></td>
                             <td><h4></h4></td>     
+                            <td><h4></h4></td>
                             <td><h4></h4></td>                            
+                            <td><h4></h4></td>                            
+                            <td><h4></h4></td>                            
+                                                        
                         </tr>
                         @endforelse
                       </tbody>
