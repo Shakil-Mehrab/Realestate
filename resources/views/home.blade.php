@@ -38,11 +38,7 @@
                             <th>Detail</th>  
                             <th>Pho No</th> 
                             <th>View</th>    
-                            <th>Edit</th>    
-                            <th>Delete</th>    
-
-
-
+   
                             {{-- @endif --}}
                         </tr>
                       </thead>
@@ -65,8 +61,6 @@
                             <td>{{$property->phone}}</td>
                             {{-- @if(auth::user()->author=='admin') --}}
                             <td> <a href="{{route('property.view',$property->id)}}"><span style="color:green"><i class="far fa-eye"></i></span></a></td>
-                            <td><a href="{{route('property.edit',$property->id)}}" ><span style=""><i class="fas fa-pencil-alt"></i></span></a></td>
-                            <td><a href="{{route('property.delete',$property->id)}}" id="delete"><span style="color:#DD4F43"><i class="fas fa-trash-alt"></i></span></a></td>
                           {{-- @endif --}}
                          </tr>
                          {{-- @endif --}}

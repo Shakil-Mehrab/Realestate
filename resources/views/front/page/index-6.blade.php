@@ -18,6 +18,10 @@
 <!-- Responsive -->
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+<link href="{{asset('ratingcss/bootstrap/css/bootstrap.css')}}" rel="stylesheet">
+<link href="{{asset('ratingcss/bootstrap/css/rating.css')}}" rel="stylesheet">
+<link href="{{asset('ratingcss/bootstrap/awesome-font/css/fontawesome-all.min.css')}}" rel="stylesheet">
 <!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script><![endif]-->
 <!--[if lt IE 9]><script src="js/respond.js"></script><![endif]-->
 </head>
@@ -27,6 +31,10 @@
 
 <div class="page-wrapper">
     <!-- Preloader -->
+     <?php
+    use App\Model\Property;
+    use App\Comment;
+    ?>
     <div class="preloader"></div>
     
     <!-- Main Header-->
@@ -35,9 +43,12 @@
 
     <!-- Banner Section -->
     <section class="banner-section full-height" style="background-image: url(images/background/15.jpg);">
+     @forelse($recent_tops as $recent_top)
         <div class="content-box">
             <div class="link-box">
-                <a href="https://www.youtube.com/watch?v=Fvae8nxzVz4" class="play-now" data-fancybox="gallery" data-caption=""><i class="icon la la-play-circle-o" aria-hidden="true"></i><span class="ripple"></span></a>
+                <a href="#">
+                <iframe width="100%" height="100%" src="{{$recent_top->link}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" class="play-now" data-fancybox="gallery" data-caption="" allowfullscreen></iframe>
+                <i class="icon la la-play-circle-o" aria-hidden="true"></i><span class="ripple"></span></a>
             </div>
             <div class="title-box">
                 <div class="inner-box">
@@ -45,6 +56,15 @@
                 </div>
             </div>
         </div>
+        @empty
+        <div class="content-box">
+            <div class="link-box">
+                <a href="#">
+                <iframe width="100%" height="100%" src="NO Videos" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" class="play-now" data-fancybox="gallery" data-caption="" allowfullscreen></iframe>
+                <span class="ripple"></span></a>
+            </div>
+        </div>
+        @endforelse
     </section>
     <!--End Banner Section -->
 
@@ -73,248 +93,56 @@
                 </div>
 
                 <div class="filter-list row">
-                    <!-- Property Block -->
-                    <div class="property-block all mix house villa col-lg-4 col-md-6 col-sm-12">
-                        <div class="inner-box">
-                            <div class="image-box">
-                                <figure class="image"><img src="images/resource/property-1.jpg" alt=""></figure>
-                                <span class="for">FOR SALE</span>
-                                <span class="featured">FEATURED</span>
-                                <ul class="option-box">
-                                    <li><a href="images/resource/property-1.jpg" class="lightbox-image" data-fancybox="property"><i class="la la-camera"></i></a></li>
-                                    <li><a href="#"><i class="la la-heart"></i></a></li>
-                                    <li><a href="#"><i class="la la-retweet"></i></a></li>
-                                </ul>
-                                <ul class="info clearfix">
-                                    <li><a href="properties.html"><i class="la la-calendar-minus-o"></i>2 Years Ago</a></li>
-                                </ul>
-                            </div>
-                            <div class="lower-content">
-                                <ul class="tags">
-                                    <li><a href="property-detail.html">Apartment</a>,</li>
-                                    <li><a href="property-detail.html">Bar</a>,</li>
-                                    <li><a href="property-detail.html">House</a>,</li>
-                                </ul>
-                                <div class="thumb"><img src="images/resource/thumb-5.jpg" alt=""></div>
-                                <h3><a href="property-detail.html">Single House Near Orland Park.</a></h3>
-                                <div class="lucation"><i class="la la-map-marker"></i> Orland Park, IL 35785, Chicago, United State</div>
-                                <ul class="property-info clearfix">
-                                    <li><i class="flaticon-dimension"></i> 356 Sq-Ft</li>
-                                    <li><i class="flaticon-bed"></i> 4 Bedrooms</li>
-                                    <li><i class="flaticon-car"></i> 2 Garage</li>
-                                    <li><i class="flaticon-bathtub"></i> 3 Bathroom</li>
-                                </ul>
-                                <div class="property-price clearfix">
-                                    <div class="read-more"><a href="property-detail.html" class="theme-btn">More Detail</a></div>
-                                    <div class="price">$ 13,65,000</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @forelse($all_videos as $recent_last_property)
+            <div class="property-block col-lg-4 col-md-6 col-sm-12">
+                  <div class="inner-box">
 
-                    <!-- Property Block -->
-                    <div class="property-block all mix restaurent apprtment form col-lg-4 col-md-6 col-sm-12">
-                        <div class="inner-box">
-                            <div class="image-box">
-                                <figure class="image"><img src="images/resource/property-2.jpg" alt=""></figure>
-                                <span class="for">FOR SALE</span>
-                                <span class="featured">FEATURED</span>
-                                <ul class="option-box">
-                                    <li><a href="images/resource/property-2.jpg" class="lightbox-image" data-fancybox="property"><i class="la la-camera"></i></a></li>
-                                    <li><a href="#"><i class="la la-heart"></i></a></li>
-                                    <li><a href="#"><i class="la la-retweet"></i></a></li>
-                                </ul>
-                                <ul class="info clearfix">
-                                    <li><a href="properties.html"><i class="la la-calendar-minus-o"></i>2 Years Ago</a></li>
-                                </ul>
-                            </div>
-                            <div class="lower-content">
-                                <ul class="tags">
-                                    <li><a href="property-detail.html">Apartment</a>,</li>
-                                    <li><a href="property-detail.html">Bar</a>,</li>
-                                    <li><a href="property-detail.html">House</a>,</li>
-                                </ul>
-                                <div class="thumb"><img src="images/resource/thumb-6.jpg" alt=""></div>
-                                <h3><a href="property-detail.html">Apartment Morden 1243, W No...</a></h3>
-                                <div class="lucation"><i class="la la-map-marker"></i> Orland Park, IL 35785, Chicago, United State</div>
-                                <ul class="property-info clearfix">
-                                    <li><i class="flaticon-dimension"></i> 356 Sq-Ft</li>
-                                    <li><i class="flaticon-bed"></i> 4 Bedrooms</li>
-                                    <li><i class="flaticon-car"></i> 2 Garage</li>
-                                    <li><i class="flaticon-bathtub"></i> 3 Bathroom</li>
-                                </ul>
-                                <div class="property-price clearfix">
-                                    <div class="read-more"><a href="property-detail.html" class="theme-btn">More Detail</a></div>
-                                    <div class="price">$ 13,65,000</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="image-box"> 
+                    <figure class="image"><img src="{{asset($recent_last_property->property->image)}}" alt="" style="max-height:320px;min-height:320px"></figure>
+                    <span class="for">{{$recent_last_property->property->status}}</span>
+                    <span class="featured">{{$recent_last_property->property->property_type}}</span>
+                    <div class="video-link">
+                        <a href="">
 
-                    <!-- Property Block -->
-                    <div class="property-block all mix house restaurent villa col-lg-4 col-md-6 col-sm-12">
-                        <div class="inner-box">
-                            <div class="image-box">
-                                <figure class="image"><img src="images/resource/property-3.jpg" alt=""></figure>
-                                <span class="for">FOR SALE</span>
-                                <span class="featured">FEATURED</span>
-                                <ul class="option-box">
-                                    <li><a href="images/resource/property-3.jpg" class="lightbox-image" data-fancybox="property"><i class="la la-camera"></i></a></li>
-                                    <li><a href="#"><i class="la la-heart"></i></a></li>
-                                    <li><a href="#"><i class="la la-retweet"></i></a></li>
-                                </ul>
-                                <ul class="info clearfix">
-                                    <li><a href="properties.html"><i class="la la-calendar-minus-o"></i>2 Years Ago</a></li>
-                                </ul>
-                            </div>
-                            <div class="lower-content">
-                                <ul class="tags">
-                                    <li><a href="property-detail.html">Apartment</a>,</li>
-                                    <li><a href="property-detail.html">Bar</a>,</li>
-                                    <li><a href="property-detail.html">House</a>,</li>
-                                </ul>
-                                <div class="thumb"><img src="images/resource/thumb-7.jpg" alt=""></div>
-                                <h3><a href="property-detail.html">Great Home for Single fmaily</a></h3>
-                                <div class="lucation"><i class="la la-map-marker"></i> Orland Park, IL 35785, Chicago, United State</div>
-                                <ul class="property-info clearfix">
-                                    <li><i class="flaticon-dimension"></i> 356 Sq-Ft</li>
-                                    <li><i class="flaticon-bed"></i> 4 Bedrooms</li>
-                                    <li><i class="flaticon-car"></i> 2 Garage</li>
-                                    <li><i class="flaticon-bathtub"></i> 3 Bathroom</li>
-                                </ul>
-                                <div class="property-price clearfix">
-                                    <div class="read-more"><a href="property-detail.html" class="theme-btn">More Detail</a></div>
-                                    <div class="price">$ 13,65,000</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Property Block -->
-                    <div class="property-block all mix apprtment villa form col-lg-4 col-md-6 col-sm-12">
-                        <div class="inner-box">
-                            <div class="image-box">
-                                <figure class="image"><img src="images/resource/property-4.jpg" alt=""></figure>
-                                <span class="for">FOR SALE</span>
-                                <span class="featured">FEATURED</span>
-                                <ul class="option-box">
-                                    <li><a href="images/resource/property-4.jpg" class="lightbox-image" data-fancybox="property"><i class="la la-camera"></i></a></li>
-                                    <li><a href="#"><i class="la la-heart"></i></a></li>
-                                    <li><a href="#"><i class="la la-retweet"></i></a></li>
-                                </ul>
-                                <ul class="info clearfix">
-                                    <li><a href="properties.html"><i class="la la-calendar-minus-o"></i>2 Years Ago</a></li>
-                                </ul>
-                            </div>
-                            <div class="lower-content">
-                                <ul class="tags">
-                                    <li><a href="property-detail.html">Apartment</a>,</li>
-                                    <li><a href="property-detail.html">Bar</a>,</li>
-                                    <li><a href="property-detail.html">House</a>,</li>
-                                </ul>
-                                <div class="thumb"><img src="images/resource/thumb-8.jpg" alt=""></div>
-                                <h3><a href="property-detail.html">Single House Near Orland Park.</a></h3>
-                                <div class="lucation"><i class="la la-map-marker"></i> Orland Park, IL 35785, Chicago, United State</div>
-                                <ul class="property-info clearfix">
-                                    <li><i class="flaticon-dimension"></i> 356 Sq-Ft</li>
-                                    <li><i class="flaticon-bed"></i> 4 Bedrooms</li>
-                                    <li><i class="flaticon-car"></i> 2 Garage</li>
-                                    <li><i class="flaticon-bathtub"></i> 3 Bathroom</li>
-                                </ul>
-                                <div class="property-price clearfix">
-                                    <div class="read-more"><a href="property-detail.html" class="theme-btn">More Detail</a></div>
-                                    <div class="price">$ 13,65,000</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Property Block -->
-                    <div class="property-block all mix house restaurent villa col-lg-4 col-md-6 col-sm-12">
-                        <div class="inner-box">
-                            <div class="image-box">
-                                <figure class="image"><img src="images/resource/property-5.jpg" alt=""></figure>
-                                <span class="for">FOR SALE</span>
-                                <span class="featured">FEATURED</span>
-                                <ul class="option-box">
-                                    <li><a href="images/resource/property-5.jpg" class="lightbox-image" data-fancybox="property"><i class="la la-camera"></i></a></li>
-                                    <li><a href="#"><i class="la la-heart"></i></a></li>
-                                    <li><a href="#"><i class="la la-retweet"></i></a></li>
-                                </ul>
-                                <ul class="info clearfix">
-                                    <li><a href="properties.html"><i class="la la-calendar-minus-o"></i>2 Years Ago</a></li>
-                                </ul>
-                            </div>
-                            <div class="lower-content">
-                                <ul class="tags">
-                                    <li><a href="property-detail.html">Apartment</a>,</li>
-                                    <li><a href="property-detail.html">Bar</a>,</li>
-                                    <li><a href="property-detail.html">House</a>,</li>
-                                </ul>
-                                <div class="thumb"><img src="images/resource/thumb-9.jpg" alt=""></div>
-                                <h3><a href="property-detail.html">Apartment Morden 1243, W No...</a></h3>
-                                <div class="lucation"><i class="la la-map-marker"></i> Orland Park, IL 35785, Chicago, United State</div>
-                                <ul class="property-info clearfix">
-                                    <li><i class="flaticon-dimension"></i> 356 Sq-Ft</li>
-                                    <li><i class="flaticon-bed"></i> 4 Bedrooms</li>
-                                    <li><i class="flaticon-car"></i> 2 Garage</li>
-                                    <li><i class="flaticon-bathtub"></i> 3 Bathroom</li>
-                                </ul>
-                                <div class="property-price clearfix">
-                                    <div class="read-more"><a href="property-detail.html" class="theme-btn">More Detail</a></div>
-                                    <div class="price">$ 13,65,000</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Property Block -->
-                    <div class="property-block all mix apprtment restaurent form col-lg-4 col-md-6 col-sm-12">
-                        <div class="inner-box">
-                            <div class="image-box">
-                                <figure class="image"><img src="images/resource/property-6.jpg" alt=""></figure>
-                                <span class="for">FOR SALE</span>
-                                <span class="featured">FEATURED</span>
-                                <ul class="option-box">
-                                    <li><a href="images/resource/property-6.jpg" class="lightbox-image" data-fancybox="property"><i class="la la-camera"></i></a></li>
-                                    <li><a href="#"><i class="la la-heart"></i></a></li>
-                                    <li><a href="#"><i class="la la-retweet"></i></a></li>
-                                </ul>
-                                <ul class="info clearfix">
-                                    <li><a href="properties.html"><i class="la la-calendar-minus-o"></i>2 Years Ago</a></li>
-                                </ul>
-                            </div>
-                            <div class="lower-content">
-                                <ul class="tags">
-                                    <li><a href="property-detail.html">Apartment</a>,</li>
-                                    <li><a href="property-detail.html">Bar</a>,</li>
-                                    <li><a href="property-detail.html">House</a>,</li>
-                                </ul>
-                                <div class="thumb"><img src="images/resource/thumb-10.jpg" alt=""></div>
-                                <h3><a href="property-detail.html">Great Home for Single fmaily</a></h3>
-                                <div class="lucation"><i class="la la-map-marker"></i> Orland Park, IL 35785, Chicago, United State</div>
-                                <ul class="property-info clearfix">
-                                    <li><i class="flaticon-dimension"></i> 356 Sq-Ft</li>
-                                    <li><i class="flaticon-bed"></i> 4 Bedrooms</li>
-                                    <li><i class="flaticon-car"></i> 2 Garage</li>
-                                    <li><i class="flaticon-bathtub"></i> 3 Bathroom</li>
-                                </ul>
-                                <div class="property-price clearfix">
-                                    <div class="read-more"><a href="property-detail.html" class="theme-btn">More Detail</a></div>
-                                    <div class="price">$ 13,65,000</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
+                  <iframe width="100%" height="100%" src="{{$recent_last_property->link}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>     
+                        </a></div>
+                    <ul class="info clearfix">
+                        <li><a href="{{route('properties')}}"><i class="la la-calendar-minus-o"></i>{{$recent_last_property->property->created_at}}</a></li>
+                        <li><a href="{{route('agent.detail')}}"><i class="la la-user-secret"></i>$ {{$recent_last_property->property->price}}</a></li>
+                    </ul>
                 </div>
-
+                <div class="lower-content">
+                    <ul class="tags">
+                        <li><a href="#">{{$recent_last_property->property->views}} views</a>,</li>
+                        <li><a href="#">{{$recent_last_property->property->likes()->count()}} likes</a>,</li>
+                        <li><a href="#">{{$recent_last_property->property->comments()->count()}} Coments</a></li>
+                        <li><a href="#">@include('front.includes.rating.recent-last-rating')</a>,</li>
+                    </ul>
+                    <h3><a href="{{route('property.more.detail',$recent_last_property->property->id)}}">{{$recent_last_property->title}}</a></h3>
+                    <div class="lucation"><i class="la la-map-marker"></i>{{$recent_last_property->address}}</div>
+                    <ul class="property-info clearfix">
+                        <li><i class="flaticon-dimension"></i> {{$recent_last_property->property->area}}</li>
+                        <li><i class="flaticon-bed"></i> {{$recent_last_property->property->nong_bed_room}} Bedrooms</li>
+                        <li><i class="flaticon-car"></i> {{$recent_last_property->property->nong_of_gourage}}</li>
+                        <li><i class="flaticon-bathtub"></i> {{$recent_last_property->property->bathroom}} Bathroom</li>
+                    </ul>
+                    <div class="property-price clearfix">
+                        <div class="read-more"><a href="{{route('property.more.detail',$recent_last_property->property->id)}}" class="theme-btn">More Detail</a></div>
+                        <div class="price">$ {{$recent_last_property->property->price}}</div>
+                    </div>
+                </div>
+               
+                </div>
+              <br>
+        </div>
+                   @empty
+                 <figure class="image"><img src="image" alt="No Image" ></figure>
+                @endforelse
+                 </div>
                 <!-- Load More -->
-                <div class="load-more-btn text-center">
-                    <a href="#" class="theme-btn btn-style-two">Load More</a>
+                 <div class="load-more-btn text-center">
+                   {!! $all_videos->links(); !!}
                 </div>
-            </div>
-    	</div>
     </section>
     <!--End Property Filter Section -->
 
@@ -807,7 +635,20 @@
 <script src="realestate/js/script.js"></script>
 <!-- Color Setting -->
 <script src="realestate/js/color-settings.js"></script>
-</body>
 
-<!-- Tiger Cage/index-6.html by g4bbar, Thu, 24 Jan 2019 15:34:44 GMT -->
+<script src="{{asset('ratingcss/bootstrap/js/bootstrap.js')}}"></script>
+<script src="{{asset('ratingcss/bootstrap/js/jquery.min.js')}}"></script>
+<script src="{{asset('ratingcss/bootstrap/js/rating.js')}}"></script>    
+<script>
+$('.ratings').rating(function(vote,event){
+  $.ajax({
+    method:"POST",
+    url:'{{ url('edit-star') }}',
+    data:{vote:vote}
+  }).done(function(info){
+    $('.info').html("your vote: <b>"+info+"<b>")
+  })
+})
+</script>
+</body>
 </html>

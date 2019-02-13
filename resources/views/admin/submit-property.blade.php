@@ -8,6 +8,7 @@
                     <form method="post" action="{{route('post.property')}}" enctype="multipart/form-data">
                         {{csrf_field()}}
                     	<div class="title"><h3>Basic Info</h3></div>
+                        @include("admin.dashboard-includes.message")
                         <div class="row">
                         	<!-- Form Group -->
                             <div class="form-group col-lg-3 col-md-6 col-sm-12">
@@ -156,7 +157,7 @@
                         <div class="row">
                            	<!-- Form Group -->
                             <div class="form-group col-lg-12">
-                            	<textarea name="detail" placeholder="Detailed Information">{{Request::old('detail')}}</textarea>
+                            	<textarea name="detail" placeholder="Detailed Information" required>{{Request::old('detail')}}</textarea>
                             </div>
                         </div>
 

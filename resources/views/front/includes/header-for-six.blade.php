@@ -42,7 +42,6 @@
                                 <li class="dropdown"><a href="#">Agents</a>
                                     <ul>
                                         <li><a href="{{route('agent')}}"">Agents</a></li>
-                                        <li><a href="{{route('agent.detail')}}">Agent Detail</a></li>
                                     </ul>
                                 </li>
                                 <li class="dropdown"><a href="#">Properties</a>

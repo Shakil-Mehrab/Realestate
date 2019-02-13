@@ -9,20 +9,23 @@
 <link href="{{asset('realestate/css/bootstrap.css')}}" rel="stylesheet">
 <link href="{{asset('realestate/css/style.css')}}" rel="stylesheet">
 <link href="{{asset('realestate/css/responsive.css')}}" rel="stylesheet">
-<link href="{{asset('style/ownstyle.css')}}" rel="stylesheet">
 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <!--Color Switcher Mockup-->
 <link href="{{asset('realestate/css/color-switcher-design.css')}}" rel="stylesheet">
 <!--Color Themes-->
 <link id="theme-color-file" href="{{asset('realestate/css/color-themes/default-theme.css')}}" rel="stylesheet">
 
-<link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
-<link rel="icon" href="images/favicon.png" type="image/x-icon">
+<link rel="shortcut icon" href="{{asset('images/favicon.png')}}" type="image/x-icon">
+<link rel="icon" href="{{asset('images/favicon.png')}}" type="image/x-icon">
+
 <!-- Responsive -->
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 <!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script><![endif]-->
 <!--[if lt IE 9]><script src="js/respond.js"></script><![endif]-->
+<link href="{{asset('style/ownstyle.css')}}" rel="stylesheet">
+
 </head>
 
 <body>
@@ -56,7 +59,7 @@
             <div class="mixitup-gallery">
                 <div class="upper-box clearfix">
                     <div class="sec-title">
-                        <span class="title">FIND YOUR HOUSE IN YOUR CITY</span>
+                        <span class="title"><span class="fo">FIND YOUR HOUSE IN YOUR CITY</span></span>
                         <h2>POPULAR PROPERTY</h2>
                     </div>
                     <!--Filter-->
@@ -73,10 +76,11 @@
                 </div>
                 <div class="filter-list row">
                  @forelse($all_popular_properties as $all_popular_property)
+                
                     <div class="property-block all mix house villa col-xl-4 col-lg-6 col-md-6 col-sm-12">
                         <div class="inner-box">
                             <div class="image-box">
-                                <figure class="image"><img src="{{$all_popular_property->image}}" alt="" style="max-height:320px;min-height:320px"></figure>
+                                <figure class="image"><img src="{{asset($all_popular_property->image)}}" alt="" style="max-height:320px;min-height:320px"></figure>
                                 <span class="for">{{$all_popular_property->status}}</span>
                                 <span class="featured">{{$all_popular_property->property_type}}</span>
                                 <ul class="option-box">
@@ -106,7 +110,8 @@
                                     <li><i class="flaticon-dimension"></i> {{$all_popular_property->area}} sqft</li>
                                     <li><i class="flaticon-bed"></i> {{$all_popular_property->nong_of_bedroom}} Bedrooms</li>
                                     <li><i class="flaticon-car"></i> {{$all_popular_property->nong_of_gourage}} Garage</li>
-                                    <li><i class="flaticon-bathtub"></i> {{$all_popular_property->nong_of_bathroom}} Bathroom</li>
+                                    <li><i class="flaticon-bathtub"></i> {{$all_popular_property->nong_of_bathroom}}Bathroom
+                                    </li>
                                 </ul>
                                 <div class="property-price clearfix">
                                     <div class="read-more"><a href="{{route('property.more.detail',$all_popular_property->id)}}" class="theme-btn">More Detail</a></div>
@@ -126,12 +131,13 @@
                  @endforelse
                 </div>
             </div>
-                <!-- Load More -->
                 <div class="load-more-btn text-center">
-                    <a href="#" class="theme-btn btn-style-two">Load More</a>
+                   {!! $all_popular_properties->links(); !!}
                 </div>
             </div>
     </section>
+                    
+
     <!--End Property Filter Section -->
 
 

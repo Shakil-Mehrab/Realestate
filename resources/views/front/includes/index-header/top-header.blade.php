@@ -18,9 +18,6 @@
                             <a href="{{route('register')}}" class="theme-btn btn-style-four">Sign Up</a>
                             @endauth
                        @endif
-
-
-
                     </div>
                 </div>
             </div>

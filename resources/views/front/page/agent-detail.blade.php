@@ -6,13 +6,13 @@
 <meta charset="utf-8">
 <title>Ourland - Real Estate HTML Template | About Us</title>
 <!-- Stylesheets -->
-<link href="realestate/css/bootstrap.css" rel="stylesheet">
-<link href="realestate/css/style.css" rel="stylesheet">
-<link href="realestate/css/responsive.css" rel="stylesheet">
+<link href="{{asset('realestate/css/bootstrap.css')}}" rel="stylesheet">
+<link href="{{asset('realestate/css/style.css')}}" rel="stylesheet">
+<link href="{{asset('realestate/css/responsive.css')}}" rel="stylesheet">
 <!--Color Switcher Mockup-->
-<link href="realestate/css/color-switcher-design.css" rel="stylesheet">
+<link href="{{asset('realestate/css/color-switcher-design.css')}}" rel="stylesheet">
 <!--Color Themes-->
-<link id="theme-color-file" href="realestate/css/color-themes/default-theme.css" rel="stylesheet">
+<link id="theme-color-file" href="{{asset('realestate/css/color-themes/default-theme.css')}}" rel="stylesheet">
 
 <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
 <link rel="icon" href="images/favicon.png" type="image/x-icon">
@@ -45,16 +45,14 @@
         </div>
     </section>
     <!--End Page Title-->
-
     <!-- Agent Detail -->
     <section class="agent-detail">
         <div class="auto-container">
             <div class="row">
-              @forelse($top_agents as $top_agent)
                 <div class="image-column col-lg-4 col-md-12 col-sm-12">
                     <div class="inner-column">
                         <div class="image-box">
-                            <figure class="image"><img src="{{$top_agent->image}}" alt=""></figure>
+                            <figure class="image"><img src="{{asset($single_agent->image)}}" alt="" style="min-height: 420px;max-height: 420px"></figure>
                         </div>
                     </div>
                 </div>
@@ -62,24 +60,24 @@
                 <div class="content-column col-lg-8 col-md-12 col-sm-12">
                     <div class="inner-column">
                         <div class="about-agent">
-                            <h3 class="name">{{$top_agent->name}}</h3>
+                           <a href="{{route('agent.full.detail',$single_agent->id)}}"> <h3 class="name">{{$single_agent->name}}</h3>
                             <span class="designation">Real Estate Agent</span>
                             <div class="text">
-                                <p>{{$top_agent->detail}}</p>
+                                <p>{{$single_agent->detail}}</p>
                             </div>
                             <div class="contact-info">
                                 <div class="row">
                                     <div class="column col-xl-4 col-lg-6 col-md-12 col-sm-12">
                                         <ul>
-                                            <li><i class="la la-phone"></i>{{$top_agent->phone}}</li>
-                                            <li><i class="la la-envelope-o"></i> <a href="#">{{$top_agent->email}}</a></li>
+                                            <li><i class="la la-phone"></i>{{$single_agent->phone}}</li>
+                                            <li><i class="la la-envelope-o"></i> <a href="#">{{$single_agent->email}}</a></li>
                                         </ul>
                                     </div>
 
                                     <div class="column col-xl-4 col-lg-6 col-md-12 col-sm-12">
                                         <ul>
                                             <li><span>Address</span></li>
-                                            <li>{{$top_agent->address}}</li>
+                                            <li>{{$single_agent->address}}</li>
                                         </ul>
                                     </div>
 
@@ -101,187 +99,11 @@
                             </div>                             
                         </div>
                     </div>
-                </div>
-                @empty
-                 <div class="image-column col-lg-4 col-md-12 col-sm-12">
-                    <div class="inner-column">
-                        <div class="image-box">
-                            <figure class="image"><img src="images" alt="No Agent"></figure>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="content-column col-lg-8 col-md-12 col-sm-12">
-                    <div class="inner-column">
-                        <div class="about-agent">
-                            <h3 class="name">Badoy ghaly</h3>
-                            <span class="designation">Real Estate Agent</span>
-                      <div class="text">
-                       <p>No Agent</p>
-                    </div>
-                <div class="contact-info">
-                    <div class="row">
-                        <div class="column col-xl-4 col-lg-6 col-md-12 col-sm-12">
-                            <ul>
-                                <li><i class="la la-phone">No Agent</i></li>
-                                <li><i class="la la-envelope-o"></i> <a href="#">No Agent</a></li>
-                            </ul>
-                        </div>
-
-                        <div class="column col-xl-4 col-lg-6 col-md-12 col-sm-12">
-                            <ul>
-                                <li><span>Address</span></li>
-                                <li>No Agent</li>
-                            </ul>
-                        </div>
-
-                        <div class="column col-xl-4 col-lg-6 col-md-6 col-sm-12">
-                            <ul>
-                                <li><strong>Follow Us:</strong></li>
-                                <li>
-                                    <ul class="social-links">
-                                        <li><a href="#"><i class="la la-facebook"></i></a></li>
-                                        <li><a href="#"><i class="la la-twitter"></i></a></li>
-                                        <li><a href="#"><i class="la la-google-plus"></i></a></li>
-                                        <li><a href="#"><i class="la la-dribbble"></i></a></li>
-                                        <li><a href="#"><i class="la la-pinterest"></i></a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-              @endforelse
+                </div> 
             </div>
         </div>
     </section>
     <!--End Agent Detail -->
-
-    <!-- Recent Section -->
-    <section class="property-section alternate">
-        <div class="auto-container">
-            <div class="sec-title">
-                <span class="title">FIND YOUR HOUSE IN YOUR CITY</span>
-                <h2>RECENT PROPERTIES</h2>
-            </div>
-
-            <div class="row">
-                <!-- Property Block -->
-                <div class="property-block col-xl-4 col-lg-6 col-md-6 col-sm-12">
-                    <div class="inner-box">
-                        <div class="image-box">
-                            <div class="single-item-carousel owl-carousel owl-theme">
-                                <figure class="image"><img src="images/resource/property-1.jpg" alt=""></figure>
-                                <figure class="image"><img src="images/resource/property-2.jpg" alt=""></figure>
-                                <figure class="image"><img src="images/resource/property-3.jpg" alt=""></figure>
-                            </div>
-                            <span class="for">FOR SALE</span>
-                            <span class="featured">FEATURED</span>
-                            <ul class="info clearfix">
-                                <li><a href="properties.html"><i class="la la-calendar-minus-o"></i>2 Years Ago</a></li>
-                                <li><a href="agent-detail.html"><i class="la la-user-secret"></i>Ghaly Morca</a></li>
-                            </ul>
-                        </div>
-                        <div class="lower-content">
-                            <ul class="tags">
-                                <li><a href="property-detail.html">Apartment</a>,</li>
-                                <li><a href="property-detail.html">Bar</a>,</li>
-                                <li><a href="property-detail.html">House</a>,</li>
-                            </ul>
-                            <h3><a href="property-detail.html">Single House Near Orland Park.</a></h3>
-                            <div class="lucation"><i class="la la-map-marker"></i> Orland Park, IL 35785, Chicago, United State</div>
-                            <ul class="property-info clearfix">
-                                <li><i class="flaticon-dimension"></i> 356 Sq-Ft</li>
-                                <li><i class="flaticon-bed"></i> 4 Bedrooms</li>
-                                <li><i class="flaticon-car"></i> 2 Garage</li>
-                                <li><i class="flaticon-bathtub"></i> 3 Bathroom</li>
-                            </ul>
-                            <div class="property-price clearfix">
-                                <div class="read-more"><a href="property-detail.html" class="theme-btn">More Detail</a></div>
-                                <div class="price">$ 13,65,000</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Property Block -->
-                <div class="property-block col-xl-4 col-lg-6 col-md-6 col-sm-12">
-                    <div class="inner-box">
-                        <div class="image-box">
-                            <figure class="image"><img src="images/resource/property-2.jpg" alt=""></figure>
-                            <span class="for">FOR SALE</span>
-                            <span class="featured">FEATURED</span>
-                            <ul class="option-box">
-                                <li><a href="images/resource/property-1.jpg" class="lightbox-image" data-fancybox="property"><i class="la la-camera"></i></a></li>
-                                <li><a href="#"><i class="la la-heart"></i></a></li>
-                                <li><a href="#"><i class="la la-retweet"></i></a></li>
-                            </ul>
-                            <ul class="info clearfix">
-                                <li><a href="properties.html"><i class="la la-calendar-minus-o"></i>2 Years Ago</a></li>
-                                <li><a href="agent-detail.html"><i class="la la-user-secret"></i>Ghaly Morca</a></li>
-                            </ul>
-                        </div>
-                        <div class="lower-content">
-                            <ul class="tags">
-                                <li><a href="property-detail.html">Apartment</a>,</li>
-                                <li><a href="property-detail.html">Bar</a>,</li>
-                                <li><a href="property-detail.html">House</a>,</li>
-                            </ul>
-                            <h3><a href="property-detail.html">Apartment Morden 1243, W No.</a></h3>
-                            <div class="lucation"><i class="la la-map-marker"></i> Orland Park, IL 35785, Chicago, United State</div>
-                            <ul class="property-info clearfix">
-                                <li><i class="flaticon-dimension"></i> 356 Sq-Ft</li>
-                                <li><i class="flaticon-bed"></i> 4 Bedrooms</li>
-                                <li><i class="flaticon-car"></i> 2 Garage</li>
-                                <li><i class="flaticon-bathtub"></i> 3 Bathroom</li>
-                            </ul>
-                            <div class="property-price clearfix">
-                                <div class="read-more"><a href="property-detail.html" class="theme-btn">More Detail</a></div>
-                                <div class="price">$ 13,65,000</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Property Block -->
-                <div class="property-block col-xl-4 col-lg-6 col-md-6 col-sm-12">
-                    <div class="inner-box">
-                        <div class="image-box">
-                            <figure class="image"><img src="images/resource/property-3.jpg" alt=""></figure>
-                            <span class="for">FOR SALE</span>
-                            <span class="featured">FEATURED</span>
-                            <div class="video-link"><a href="https://www.youtube.com/watch?v=Fvae8nxzVz4" data-fancybox="gallery" data-caption=""><i class="icon la la-play-circle" aria-hidden="true"></i></a></div>
-                            <ul class="info clearfix">
-                                <li><a href="properties.html"><i class="la la-calendar-minus-o"></i>2 Years Ago</a></li>
-                                <li><a href="agent-detail.html"><i class="la la-user-secret"></i>Ghaly Morca</a></li>
-                            </ul>
-                        </div>
-                        <div class="lower-content">
-                            <ul class="tags">
-                                <li><a href="property-detail.html">Apartment</a>,</li>
-                                <li><a href="property-detail.html">Bar</a>,</li>
-                                <li><a href="property-detail.html">House</a>,</li>
-                            </ul>
-                            <h3><a href="property-detail.html">Great Home for Single fmaily</a></h3>
-                            <div class="lucation"><i class="la la-map-marker"></i> Orland Park, IL 35785, Chicago, United State</div>
-                            <ul class="property-info clearfix">
-                                <li><i class="flaticon-dimension"></i> 356 Sq-Ft</li>
-                                <li><i class="flaticon-bed"></i> 4 Bedrooms</li>
-                                <li><i class="flaticon-car"></i> 2 Garage</li>
-                                <li><i class="flaticon-bathtub"></i> 3 Bathroom</li>
-                            </ul>
-                            <div class="property-price clearfix">
-                                <div class="read-more"><a href="property-detail.html" class="theme-btn">More Detail</a></div>
-                                <div class="price">$ 13,65,000</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--End Property Section -->
-
     <!-- Appointment Section -->
     <section class="appointment-section">
         <div class="auto-container">
@@ -332,20 +154,71 @@
     </section>
     <!--End FAQ Form Section -->
 
-    <!-- Agents Section -->
+     <div class="agents-section">
+            <div class="auto-container">
+                <div class="sec-title">
+                    <span class="title">MEET OUR PROFESSIONAL AGENTS</span>
+                    <h2>MEET OUR AGENTS</h2>
+                </div>
+
+                <div class="agents-carousel owl-carousel owl-theme">
+                    <!-- Agent Block -->
+                    @forelse($all_agents as $agent)
+                    <div class="agent-block">
+                        <div class="inner-box">
+                            <div class="image-box">
+                                <figure class="image"><a href="{{route('agent.full.detail',$agent->id)}}"><img src="{{asset($agent->image)}}" alt="" style="max-height: 300px;min-height: 300px"></a></figure>
+                                <ul class="social-links">
+                                    <li><a href="#"><i class="la la-facebook-f"></i></a></li>
+                                    <li><a href="#"><i class="la la-twitter"></i></a></li>
+                                    <li><a href="#"><i class="la la-google-plus"></i></a></li>
+                                    <li><a href="#"><i class="la la-dribbble"></i></a></li>
+                                    <li><a href="#"><i class="la la-pinterest"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="info-box">
+                                <h4 class="name"><a href="{{route('agent.full.detail',$agent->id)}}">{{$agent->name}}</a></h4>
+                                <span class="designation">Real Estate Agent</span>
+                            </div>
+                        </div>
+                    </div>
+                    @empty
+                      <div class="agent-block">
+                        <div class="inner-box">
+                            <div class="image-box">
+                                <figure class="image"><a href="#"><img src="images" alt="No property"></a></figure>
+                                <ul class="social-links">
+                                    <li><a href="#"><i class="la la-facebook-f"></i></a></li>
+                                    <li><a href="#"><i class="la la-twitter"></i></a></li>
+                                    <li><a href="#"><i class="la la-google-plus"></i></a></li>
+                                    <li><a href="#"><i class="la la-dribbble"></i></a></li>
+                                    <li><a href="#"><i class="la la-pinterest"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="info-box">
+                                <h4 class="name"><a href='#'>Magda Anoma</a></h4>
+                                <span class="designation">Real Estate Agent</span>
+                            </div>
+                        </div>
+                    </div>
+                    @endforelse
+                </div>
+            </div>
+     </div>
     <div class="agents-section">
         <div class="auto-container">
             <div class="sec-title">
-                <span class="title">MEET OUR PROFESSIONAL AGENTS</span>
-                <h2>MEET OUR AGENTS</h2>
+                <span class="title">Our best Clients</span>
+                <h2> Our Clients</h2>
             </div>
 
             <div class="agents-carousel owl-carousel owl-theme">
                 <!-- Agent Block -->
+                @forelse($all_agents as $agent)
                 <div class="agent-block">
                     <div class="inner-box">
                         <div class="image-box">
-                            <figure class="image"><a href="agent-detail.html"><img src="images/resource/agent-1.jpg" alt=""></a></figure>
+                            <figure class="image"><a href="{{route('property.detail')}}"><img src="{{asset($agent->image)}}" alt="" style="max-height: 300px;min-height: 300px"></a></figure>
                             <ul class="social-links">
                                 <li><a href="#"><i class="la la-facebook-f"></i></a></li>
                                 <li><a href="#"><i class="la la-twitter"></i></a></li>
@@ -355,17 +228,16 @@
                             </ul>
                         </div>
                         <div class="info-box">
-                            <h4 class="name"><a href="agent-detail.html">Magda Anoma</a></h4>
+                            <h4 class="name"><a href="{{route('property.input')}}">{{$agent->name}}</a></h4>
                             <span class="designation">Real Estate Agent</span>
                         </div>
                     </div>
                 </div>
-
-                <!-- Agent Block -->
-                <div class="agent-block">
+                @empty
+                  <div class="agent-block">
                     <div class="inner-box">
                         <div class="image-box">
-                            <figure class="image"><a href="agent-detail.html"><img src="images/resource/agent-2.jpg" alt=""></a></figure>
+                            <figure class="image"><a href="#"><img src="images" alt="No property"></a></figure>
                             <ul class="social-links">
                                 <li><a href="#"><i class="la la-facebook-f"></i></a></li>
                                 <li><a href="#"><i class="la la-twitter"></i></a></li>
@@ -375,116 +247,15 @@
                             </ul>
                         </div>
                         <div class="info-box">
-                            <h4 class="name"><a href="agent-detail.html">Badoy Ghaly</a></h4>
+                            <h4 class="name"><a href='#'>Magda Anoma</a></h4>
                             <span class="designation">Real Estate Agent</span>
                         </div>
                     </div>
                 </div>
-
-                <!-- Agent Block -->
-                <div class="agent-block">
-                    <div class="inner-box">
-                        <div class="image-box">
-                            <figure class="image"><a href="agent-detail.html"><img src="images/resource/agent-3.jpg" alt=""></a></figure>
-                            <ul class="social-links">
-                                <li><a href="#"><i class="la la-facebook-f"></i></a></li>
-                                <li><a href="#"><i class="la la-twitter"></i></a></li>
-                                <li><a href="#"><i class="la la-google-plus"></i></a></li>
-                                <li><a href="#"><i class="la la-dribbble"></i></a></li>
-                                <li><a href="#"><i class="la la-pinterest"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="info-box">
-                            <h4 class="name"><a href="agent-detail.html">Lora Ptirayto</a></h4>
-                            <span class="designation">Real Estate Agent</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Agent Block -->
-                <div class="agent-block">
-                    <div class="inner-box">
-                        <div class="image-box">
-                            <figure class="image"><a href="agent-detail.html"><img src="images/resource/agent-1.jpg" alt=""></a></figure>
-                            <ul class="social-links">
-                                <li><a href="#"><i class="la la-facebook-f"></i></a></li>
-                                <li><a href="#"><i class="la la-twitter"></i></a></li>
-                                <li><a href="#"><i class="la la-google-plus"></i></a></li>
-                                <li><a href="#"><i class="la la-dribbble"></i></a></li>
-                                <li><a href="#"><i class="la la-pinterest"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="info-box">
-                            <h4 class="name"><a href="agent-detail.html">Magda Anoma</a></h4>
-                            <span class="designation">Real Estate Agent</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Agent Block -->
-                <div class="agent-block">
-                    <div class="inner-box">
-                        <div class="image-box">
-                            <figure class="image"><a href="agent-detail.html"><img src="images/resource/agent-2.jpg" alt=""></a></figure>
-                            <ul class="social-links">
-                                <li><a href="#"><i class="la la-facebook-f"></i></a></li>
-                                <li><a href="#"><i class="la la-twitter"></i></a></li>
-                                <li><a href="#"><i class="la la-google-plus"></i></a></li>
-                                <li><a href="#"><i class="la la-dribbble"></i></a></li>
-                                <li><a href="#"><i class="la la-pinterest"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="info-box">
-                            <h4 class="name"><a href="agent-detail.html">Badoy Ghaly</a></h4>
-                            <span class="designation">Real Estate Agent</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Agent Block -->
-                <div class="agent-block">
-                    <div class="inner-box">
-                        <div class="image-box">
-                            <figure class="image"><a href="agent-detail.html"><img src="images/resource/agent-3.jpg" alt=""></a></figure>
-                            <ul class="social-links">
-                                <li><a href="#"><i class="la la-facebook-f"></i></a></li>
-                                <li><a href="#"><i class="la la-twitter"></i></a></li>
-                                <li><a href="#"><i class="la la-google-plus"></i></a></li>
-                                <li><a href="#"><i class="la la-dribbble"></i></a></li>
-                                <li><a href="#"><i class="la la-pinterest"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="info-box">
-                            <h4 class="name"><a href="agent-detail.html">Lora Ptirayto</a></h4>
-                            <span class="designation">Real Estate Agent</span>
-                        </div>
-                    </div>
-                </div>
+                @endforelse
             </div>
         </div>
     </div>
-    <!-- End Agents Section -->
-
-    <!--Clients Section-->
-    <section class="clients-section style-three">
-        <div class="auto-container">
-            <div class="sponsors-outer">
-                <!--Sponsors Carousel-->
-                <ul class="sponsors-carousel owl-carousel owl-theme">
-                    <li class="slide-item"><figure class="image-box"><a href="#"><img src="images/clients/1.png" alt=""></a></figure></li>
-                    <li class="slide-item"><figure class="image-box"><a href="#"><img src="images/clients/2.png" alt=""></a></figure></li>
-                    <li class="slide-item"><figure class="image-box"><a href="#"><img src="images/clients/3.png" alt=""></a></figure></li>
-                    <li class="slide-item"><figure class="image-box"><a href="#"><img src="images/clients/4.png" alt=""></a></figure></li>
-                    <li class="slide-item"><figure class="image-box"><a href="#"><img src="images/clients/1.png" alt=""></a></figure></li>
-                    <li class="slide-item"><figure class="image-box"><a href="#"><img src="images/clients/2.png" alt=""></a></figure></li>
-                    <li class="slide-item"><figure class="image-box"><a href="#"><img src="images/clients/3.png" alt=""></a></figure></li>
-                    <li class="slide-item"><figure class="image-box"><a href="#"><img src="images/clients/4.png" alt=""></a></figure></li>
-                </ul>
-            </div>
-        </div>
-    </section>
-    <!--End Clients Section--> 
-
     <!-- Main Footer -->
     @include('front.includes.full-footer')
     <!-- End Main Footer -->
@@ -520,19 +291,19 @@
     <a href="#" class="purchase-btn">Purchase now $17</a>
 </div><!-- End Color Switcher -->
 
-<script src="realestate/js/jquery.js"></script> 
-<script src="realestate/js/popper.min.js"></script>
-<script src="realestate/js/bootstrap.min.js"></script>
-<script src="realestate/js/jquery-ui.js"></script>
-<script src="realestate/js/jquery.fancybox.js"></script>
-<script src="realestate/js/owl.js"></script>
-<script src="realestate/js/wow.js"></script>
-<script src="realestate/js/isotope.js"></script>
-<script src="realestate/js/mixitup.js"></script>
-<script src="realestate/js/appear.js"></script>
-<script src="realestate/js/script.js"></script>
+<script src="{{asset('realestate/js/jquery.js')}}"></script> 
+<script src="{{asset('realestate/js/popper.min.js')}}"></script>
+<script src="{{asset('realestate/js/bootstrap.min.js')}}"></script>
+<script src="{{asset('realestate/js/jquery-ui.js')}}"></script>
+<script src="{{asset('realestate/js/jquery.fancybox.js')}}"></script>
+<script src="{{asset('realestate/js/owl.js')}}"></script>
+<script src="{{asset('realestate/js/wow.js')}}"></script>
+<script src="{{asset('realestate/js/isotope.js')}}"></script>
+<script src="{{asset('realestate/js/mixitup.js')}}"></script>
+<script src="{{asset('realestate/js/appear.js')}}"></script>
+<script src="{{asset('realestate/js/script.js')}}"></script>
 <!-- Color Setting -->
-<script src="realestate/js/color-settings.js"></script>
+<script src="{{asset('realestate/js/color-settings.js')}}"></script>
 </body>
 
 <!-- Tiger Cage/about.html by g4bbar, Thu, 24 Jan 2019 15:34:49 GMT -->

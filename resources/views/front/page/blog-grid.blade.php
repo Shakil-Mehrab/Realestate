@@ -31,58 +31,8 @@
     
         <!-- Main Header-->
     <header class="main-header header-style-seven">
-        <!--Header Top-->
-        @include('front.includes.login')
-        <!-- End Header Top -->
-
-         <!-- Header Upper -->
-        <div class="header-upper">
-            <div class="auto-container">
-                <div class="clearfix">
-                    
-                    <div class="logo-outer">
-                        <div class="logo"><a href="index-2.html"><img src="images/logo-3.png" alt="" title=""></a></div>
-                    </div>
-                    
-                    <div class="upper-right clearfix">
-                        
-                        <!--Info Box-->
-                        <div class="upper-column info-box">
-                            <div class="icon-box"><span class="la la-envelope-o"></span></div>
-                            <ul>
-                                <li><span>Email:</span></li>
-                                <li>support@willie.com</li>
-                            </ul>
-
-                        </div>
-
-                        <!--Info Box-->
-                        <div class="upper-column info-box">
-                            <div class="icon-box"><span class="la la-phone"></span></div>
-                            <ul>
-                                <li><span>Phone:</span></li>
-                                <li>(+82) 135 255 1535</li>
-                            </ul>
-                        </div>
-
-                        <!--Info Box-->
-                        <div class="upper-column info-box">
-                            <div class="icon-box"><span class="la la-home"></span></div>
-                            <ul>
-                                <li><span>Address:</span></li>
-                                <li>Morar Gelid Street, New York</li>
-                            </ul>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Header Upper -->
-
       @include('front.includes.full-header')
     <!--End Main Header -->
-
     <!--Page Title-->
     <section class="page-title" style="background-image:url(images/background/16.jpg);">
         <div class="auto-container">

@@ -1,141 +1,79 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<!-- Tiger Cage/ by g4bbar, Thu, 24 Jan 2019 15:29:21 GMT -->
-<head>
-<meta charset="utf-8">
-<title>Ourland - Real Estate HTML Template | Home Page 01</title>
-<!-- Stylesheets -->
-<link href="realestate/css/bootstrap.css" rel="stylesheet">
-<link href="realestate/plugins/revolution/css/settings.css" rel="stylesheet" type="text/css"><!-- REVOLUTION SETTINGS STYLES -->
-<link href="realestate/plugins/revolution/css/layers.css" rel="stylesheet" type="text/css"><!-- REVOLUTION LAYERS STYLES -->
-<link href="realestate/plugins/revolution/css/navigation.css" rel="stylesheet" type="text/css"><!-- REVOLUTION NAVIGATION STYLES -->
-<link href="realestate/css/style.css" rel="stylesheet">
-<link href="realestate/css/responsive.css" rel="stylesheet">
-<!--Color Switcher Mockup-->
-<link href="realestate/css/color-switcher-design.css" rel="stylesheet">
-<!--Color Themes-->
-<link id="realestate/theme-color-file" href="css/color-themes/default-theme.css" rel="stylesheet">
-
-<link rel="realestate/shortcut icon" href="images/favicon.png" type="image/x-icon">
-<link rel="realestate/icon" href="images/favicon.png" type="image/x-icon">
-<!-- Responsive -->
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-<!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script><![endif]-->
-<!--[if lt IE 9]><script src="js/respond.js"></script><![endif]-->
-</head>
-
-<body>
-
-<div class="page-wrapper">
-    <!-- Preloader -->
-    <div class="preloader"></div>
-    
-  <!-- Main Header-->
-<header class="main-header header-style-one">
-<!--Header Top-->
-@include('front.includes.index-header.top-header') 
-    <!-- End Header Top -->
-
-<!-- Header Lower -->
- @include('front.includes.lower-header') 
-<!--End Header Lower-->
-
-<!-- Sticky Header  -->
- @include('front.includes.drop-header') 
- <!-- End Sticky Menu -->
-</header>
-<!--End Main Header -->
-    
+@extends('layouts.index')
+@section('content')
     <!--Main Slider-->
     <section class="main-slider">
-        <div class="rev_slider_wrapper fullwidthbanner-container"  id="rev_slider_one_wrapper" data-source="gallery">
-            <div class="rev_slider fullwidthabanner" id="rev_slider_one" data-version="5.4.1">
-                <ul>
-                    <!-- Slide 1 -->
-                    <li data-description="Slide Description" data-easein="default" data-easeout="default" data-fsmasterspeed="1500" data-fsslotamount="7" data-fstransition="fade" data-hideafterloop="0" data-hideslideonmobile="off" data-index="rs-1689" data-masterspeed="default" data-param1="" data-param10="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-rotate="0" data-saveperformance="off" data-slotamount="default" data-thumb="images/main-slider/image-2.jpg" data-title="Slide Title" data-transition="parallaxvertical">
-                        
-                        <img alt="" class="rev-slidebg" data-bgfit="cover" data-bgparallax="10" data-bgposition="center center" data-bgrepeat="no-repeat" data-kenburns="on" data-duration="10000" data-ease="Linear.easeNone" data-scalestart="100" data-scaleend="120" src="images/main-slider/image-1.jpg"> 
+            <div class="rev_slider_wrapper fullwidthbanner-container"  id="rev_slider_one_wrapper" data-source="gallery">
+                <div class="rev_slider fullwidthabanner" id="rev_slider_one" data-version="5.4.1">
+                    <ul>
+                        @forelse($most_popular_properties as $most_popular_property)
+                        <!-- Slide 1 -->
+                        <li data-description="Slide Description" data-easein="default" data-easeout="default" data-fsmasterspeed="1500" data-fsslotamount="7" data-fstransition="fade" data-hideafterloop="0" data-hideslideonmobile="off" data-index="rs-1689" data-masterspeed="default" data-param1="" data-param10="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-rotate="0" data-saveperformance="off" data-slotamount="default" data-thumb="{{asset($most_popular_property->image)}}" data-title="Slide Title" data-transition="parallaxvertical">
+                          
+                            <img alt="" class="rev-slidebg" data-bgfit="cover" data-bgparallax="10" data-bgposition="center center" data-bgrepeat="no-repeat" data-kenburns="on" data-duration="10000" data-ease="Linear.easeNone" data-scalestart="100" data-scaleend="120" src="{{asset($most_popular_property->image)}}"> 
 
-                        <div class="tp-caption" 
-                        data-paddingbottom="[0,0,0,0]"
-                        data-paddingleft="[0,0,0,0]"
-                        data-paddingright="[0,0,0,0]"
-                        data-paddingtop="[0,0,0,0]"
-                        data-responsive_offset="on"
-                        data-type="text"
-                        data-height="none"
-                        data-whitespace="nowrap"
-                        data-width="auto"
-                        data-text-align="center"
-                        data-hoffset="['10','50','0','0']"
-                        data-voffset="['0','0','0','0']"
-                        data-x="['right','right','center','center']"
-                        data-y="['middle','middle','middle','middle']"
-                        data-frames='[{"delay":1500,"speed":1000,"frame":"0","from":"x:50px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"x:50px;opacity:0;","ease":"Power3.easeInOut"}]'>
-                            <div class="content-box">
-                                <div class="inner-box">
-                                    <div class="title-box">
-                                        <h3>Luxurious Home</h3>
-                                        <p>9658 Lorem Ave, San Diego, USA</p>
-                                    </div>
-                                    <ul class="info-list">
-                                        <li><span>2340</span>Area Sq-ft</li>
-                                        <li><span>04</span>Bed Room</li>
-                                        <li><span>02</span>Kitchen</li>
-                                    </ul>
-                                    <div class="price">$42, 201,00</div>
-                                    <div class="btn-box"><a href="agent-detail.html" class="theme-btn btn-style-one">CONTACT AGENT</a></div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
+                            <div class="tp-caption" 
+                            data-paddingbottom="[0,0,0,0]"
+                            data-paddingleft="[0,0,0,0]"
+                            data-paddingright="[0,0,0,0]"
+                            data-paddingtop="[0,0,0,0]"
+                            data-responsive_offset="on"
+                            data-type="text"
+                            data-height="none"
+                            data-whitespace="nowrap"
+                            data-width="auto"
+                            data-text-align="center"
+                            data-hoffset="['10','50','0','0']"
+                            data-voffset="['0','0','0','0']"
+                            data-x="['right','right','center','center']"
+                            data-y="['middle','middle','middle','middle']"
+                            data-frames='[{"delay":1500,"speed":1000,"frame":"0","from":"x:50px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"x:50px;opacity:0;","ease":"Power3.easeInOut"}]'>
+                                <div class="content-box">
+                                    <div class="inner-box">
+                                        <div class="title-box">
+                                            <h3>{{$most_popular_property->tile}}</h3>
+                                            <p>{{$most_popular_property->address}}</p>
+                                        </div>
+                                        <ul class="info-list">
+                                        <li><span>
+                                        @include('front.includes.rating.most-popular-rating')
+                                        </span> Rating</li>
+                            <li><span>{{$most_popular_property->views}}</span>Views</li>
+                        </ul>
+                      <div class="price">${{$most_popular_property->price}}</div>
+                       <div class="btn-box"><a href="agent-detail.html" class="theme-btn btn-style-one">CONTACT AGENT</a></div>
+                    </div>
+                  </div>
+                 </div>
+                </li>
+                @empty
+                    <li>No Property</li>
+                @endforelse
+            </ul>
+         </div>
+      </div>
+    </section>
+    <!--End Main Slider-->
+   <!-- Call To Action -->
+    <section class="call-to-action" style="background-image: url(images/background/2.jpg);">
+        <div class="auto-container">
+            <div class="clearfix">
+                <!-- Title Column -->
+                <div class="title-column">
+                    <div class="sec-title light">
+                        <span class="title">IN FEW SECONDS WITH WILLES</span>
+                        <h2>BUY OR SALE YOUR HOUSE</h2>
+                    </div>
+                </div>
 
-                    <!-- Slide 1 -->
-                    <li data-description="Slide Description" data-easein="default" data-easeout="default" data-fsmasterspeed="1500" data-fsslotamount="7" data-fstransition="fade" data-hideafterloop="0" data-hideslideonmobile="off" data-index="rs-1690" data-masterspeed="default" data-param1="" data-param10="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-rotate="0" data-saveperformance="off" data-slotamount="default" data-thumb="images/main-slider/image-2.jpg" data-title="Slide Title" data-transition="parallaxvertical">
-                        
-                        <img alt="" class="rev-slidebg" data-bgfit="cover" data-bgparallax="10" data-bgposition="center center" data-bgrepeat="no-repeat"  data-kenburns="on" data-duration="10000" data-ease="Linear.easeNone" data-scalestart="100" data-scaleend="120" src="images/main-slider/image-2.jpg"> 
-
-                        <div class="tp-caption" 
-                        data-paddingbottom="[0,0,0,0]"
-                        data-paddingleft="[0,0,0,0]"
-                        data-paddingright="[0,0,0,0]"
-                        data-paddingtop="[0,0,0,0]"
-                        data-responsive_offset="on"
-                        data-type="text"
-                        data-height="none"
-                        data-whitespace="nowrap"
-                        data-width="auto"
-                        data-text-align="center"
-                        data-hoffset="['10','50','0','0']"
-                        data-voffset="['0','0','0','0']"
-                        data-x="['right','right','center','center']"
-                        data-y="['middle','middle','middle','middle']"
-                        data-frames='[{"delay":1500,"speed":1000,"frame":"0","from":"x:50px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"x:50px;opacity:0;","ease":"Power3.easeInOut"}]'>
-                            <div class="content-box">
-                                <div class="inner-box">
-                                    <div class="title-box">
-                                        <h3>Luxurious Home</h3>
-                                        <p>9658 Lorem Ave, San Diego, USA</p>
-                                    </div>
-                                    <ul class="info-list">
-                                        <li><span>2340</span>Area Sq-ft</li>
-                                        <li><span>04</span>Bed Room</li>
-                                        <li><span>02</span>Kitchen</li>
-                                    </ul>
-                                    <div class="price">$42, 201,00</div>
-                                    <div class="btn-box"><a href="{{route('agent.detail')}}" class="theme-btn btn-style-one">CONTACT AGENT</a></div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
+                <!-- Button Column -->
+                <div class="button-column">
+                    <a href="{{route('property.input')}}" class="theme-btn btn-style-three">SUBMIT PROPERTY</a>
+                    <a href="#" class="theme-btn btn-style-one">Subscrine Now</a>
+                </div>
             </div>
         </div>
     </section>
-    <!--End Main Slider-->
-
+    <!--End Call To Action -->
     <!-- Property Search Section -->
     <section class="property-search-section">
         <div class="auto-container">
@@ -149,86 +87,26 @@
                     <!--Tab / Active Tab-->
                     <div class="tab active-tab" id="sale">                         
                         <div class="property-search-form">
-                            <form method="post" action="https://expert-themes.com/html/ourland/index.html">
+                            <form method="post" action="{{route('post.subscriber')}}">
+                                @csrf
                                 <div class="row">
                                     <!-- Form Group -->
                                     <div class="form-group col-lg-3 col-md-6 col-sm-12">
-                                        <label>city</label>
-                                        <select class="custom-select-box">
-                                            <option>Any</option>
-                                            <option>New York</option>
-                                            <option>Los Angeles</option>
-                                            <option>Chicago</option>
-                                            <option>Houston</option>
-                                        </select>
+                                        <label>Name</label>
+                                      <input type="text" name="name" placeholder="Name " required value="{{Request::old('name')}}">
                                     </div>
-
+                                    <div class="form-group col-lg-3 col-md-6 col-sm-12">
+                                        <label>Email</label>
+                                         <input type="text" name="email" placeholder="Email" required value="{{Request::old('email')}}">
+                                    </div>
                                     <!-- Form Group -->
                                     <div class="form-group col-lg-3 col-md-6 col-sm-12">
-                                        <label>search by property id</label>
-                                        <input type="text" name="text" placeholder="Search ID" required>
-                                    </div>
-
+                                        <label>Phone No</label>
+                                          <input type="text" name="phone_no" placeholder="Phone No" required value="{{Request::old('phone_no')}}">
+                                    </div>                                                                          
                                     <!-- Form Group -->
                                     <div class="form-group col-lg-3 col-md-6 col-sm-12">
-                                        <label>search by Address</label>
-                                        <input type="text" name="text" placeholder="Search ID" required>
-                                    </div>
-
-                                    <!-- Form Group -->
-                                    <div class="form-group col-lg-3 col-md-6 col-sm-12">
-                                        <label>Location</label>
-                                        <select class="custom-select-box">
-                                            <option>Any</option>
-                                            <option>New York</option>
-                                            <option>Los Angeles</option>
-                                            <option>Chicago</option>
-                                            <option>Houston</option>
-                                        </select>
-                                    </div>
-
-                                    <!-- Form Group -->
-                                    <div class="form-group col-lg-3 col-md-6 col-sm-12">
-                                        <label>country</label>
-                                        <select class="custom-select-box">
-                                            <option>Any</option>
-                                            <option>California</option>
-                                            <option>Florida</option>
-                                            <option>Georgia</option>
-                                            <option>New York</option>
-                                            <option>Texas</option>
-                                        </select>
-                                    </div>
-
-                                    <!-- Form Group -->
-                                    <div class="form-group col-lg-3 col-md-6 col-sm-12">
-                                        <label>Price from</label>
-                                        <select class="custom-select-box">
-                                            <option>Any</option>
-                                            <option>$1000</option>
-                                            <option>$2000</option>
-                                            <option>$5000</option>
-                                            <option>$10000</option>
-                                            <option>$100000</option>
-                                        </select>
-                                    </div>
-                                   
-                                    <!-- Form Group -->
-                                    <div class="form-group col-lg-3 col-md-6 col-sm-12">
-                                        <label>Price To</label>
-                                        <select class="custom-select-box">
-                                            <option>Any</option>
-                                            <option>$1000</option>
-                                            <option>$2000</option>
-                                            <option>$5000</option>
-                                            <option>$10000</option>
-                                            <option>$100000</option>
-                                        </select>
-                                    </div>
-
-                                    <!-- Form Group -->
-                                    <div class="form-group col-lg-3 col-md-6 col-sm-12">
-                                        <button type="submit" class="theme-btn btn-style-two">Search</button>
+                                        <button type="submit" class="theme-btn btn-style-two">Subscribe</button>
                                     </div>
                                 </div>
                             </form>
@@ -324,133 +202,140 @@
 
     <!-- Recent Section -->
     <section class="property-section">
-        <div class="auto-container">
-            <div class="sec-title">
-                <span class="title">FIND YOUR HOUSE IN YOUR CITY</span>
-                <h2>RECENT PROPERTIES</h2>
-            </div>
-
-            <div class="row">
-                <!-- Property Block -->
-                <div class="property-block col-lg-4 col-md-6 col-sm-12">
-                    <div class="inner-box">
-                        <div class="image-box">
-                            <div class="single-item-carousel owl-carousel owl-theme">
-                                <figure class="image"><img src="images/resource/property-1.jpg" alt=""></figure>
-                                <figure class="image"><img src="images/resource/property-2.jpg" alt=""></figure>
-                                <figure class="image"><img src="images/resource/property-3.jpg" alt=""></figure>
-                            </div>
-                            <span class="for">FOR SALE</span>
-                            <span class="featured">FEATURED</span>
-                            <ul class="info clearfix">
-                                <li><a href="properties.html"><i class="la la-calendar-minus-o"></i>2 Years Ago</a></li>
-                                <li><a href="agent-detail.html"><i class="la la-user-secret"></i>Ghaly Morca</a></li>
-                            </ul>
-                        </div>
-                        <div class="lower-content">
-                            <ul class="tags">
-                                <li><a href="{{route('property.detail')}}">Apartment</a>,</li>
-                                <li><a href="{{route('property.detail')}}">Bar</a>,</li>
-                                <li><a href="{{route('property.detail')}}">House</a>,</li>
-                            </ul>
-                            <h3><a href="{{route('property.detail')}}">Single House Near Orland Park.</a></h3>
-                            <div class="lucation"><i class="la la-map-marker"></i> Orland Park, IL 35785, Chicago, United State</div>
-                            <ul class="property-info clearfix">
-                                <li><i class="flaticon-dimension"></i> 356 Sq-Ft</li>
-                                <li><i class="flaticon-bed"></i> 4 Bedrooms</li>
-                                <li><i class="flaticon-car"></i> 2 Garage</li>
-                                <li><i class="flaticon-bathtub"></i> 3 Bathroom</li>
-                            </ul>
-                            <div class="property-price clearfix">
-                                <div class="read-more"><a href="{{route('property.detail')}}" class="theme-btn">More Detail</a></div>
-                                <div class="price">$ 13,65,000</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Property Block -->
-                <div class="property-block col-lg-4 col-md-6 col-sm-12">
-                    <div class="inner-box">
-                        <div class="image-box">
-                            <figure class="image"><img src="images/resource/property-2.jpg" alt=""></figure>
-                            <span class="for">FOR SALE</span>
-                            <span class="featured">FEATURED</span>
-                            <ul class="option-box">
-                                <li><a href="images/resource/property-1.jpg" class="lightbox-image" data-fancybox="property"><i class="la la-camera"></i></a></li>
-                                <li><a href="#"><i class="la la-heart"></i></a></li>
-                                <li><a href="#"><i class="la la-retweet"></i></a></li>
-                            </ul>
-                            <ul class="info clearfix">
-                                <li><a href="{{route('properties')}}"><i class="la la-calendar-minus-o"></i>2 Years Ago</a></li>
-                                <li><a href="{{route('agent.detail')}}"><i class="la la-user-secret"></i>Ghaly Morca</a></li>
-                            </ul>
-                        </div>
-                        <div class="lower-content">
-                            <ul class="tags">
-                                <li><a href="{{route('property.detail')}}">Apartment</a>,</li>
-                                <li><a href="{{route('property.detail')}}">Bar</a>,</li>
-                                <li><a href="{{route('property.detail')}}">House</a>,</li>
-                            </ul>
-                            <h3><a href="property-detail.html">Apartment Morden 1243, W No.</a></h3>
-                            <div class="lucation"><i class="la la-map-marker"></i> Orland Park, IL 35785, Chicago, United State</div>
-                            <ul class="property-info clearfix">
-                                <li><i class="flaticon-dimension"></i> 356 Sq-Ft</li>
-                                <li><i class="flaticon-bed"></i> 4 Bedrooms</li>
-                                <li><i class="flaticon-car"></i> 2 Garage</li>
-                                <li><i class="flaticon-bathtub"></i> 3 Bathroom</li>
-                            </ul>
-                            <div class="property-price clearfix">
-                                <div class="read-more"><a href="{{route('property.detail')}}" class="theme-btn">More Detail</a></div>
-                                <div class="price">$ 13,65,000</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Property Block -->
-                <div class="property-block col-lg-4 col-md-6 col-sm-12">
-                    <div class="inner-box">
-                        <div class="image-box">
-                            <figure class="image"><img src="images/resource/property-3.jpg" alt=""></figure>
-                            <span class="for">FOR SALE</span>
-                            <span class="featured">FEATURED</span>
-                            <div class="video-link"><a href="https://www.youtube.com/watch?v=Fvae8nxzVz4" data-fancybox="gallery" data-caption=""><i class="icon la la-play-circle" aria-hidden="true"></i></a></div>
-                            <ul class="info clearfix">
-                                <li><a href="{{route('properties')}}"><i class="la la-calendar-minus-o"></i>2 Years Ago</a></li>
-                                <li><a href="{{route('agent.detail')}}"><i class="la la-user-secret"></i>Ghaly Morca</a></li>
-                            </ul>
-                        </div>
-                        <div class="lower-content">
-                            <ul class="tags">
-                                <li><a href="{{route('property.detail')}}">Apartment</a>,</li>
-                                <li><a href="{{route('property.detail')}}">Bar</a>,</li>
-                                <li><a href="{{route('property.detail')}}">House</a>,</li>
-                            </ul>
-                            <h3><a href="property-detail.html">Great Home for Single fmaily</a></h3>
-                            <div class="lucation"><i class="la la-map-marker"></i> Orland Park, IL 35785, Chicago, United State</div>
-                            <ul class="property-info clearfix">
-                                <li><i class="flaticon-dimension"></i> 356 Sq-Ft</li>
-                                <li><i class="flaticon-bed"></i> 4 Bedrooms</li>
-                                <li><i class="flaticon-car"></i> 2 Garage</li>
-                                <li><i class="flaticon-bathtub"></i> 3 Bathroom</li>
-                            </ul>
-                            <div class="property-price clearfix">
-                                <div class="read-more"><a {{route('property.detail')}}" class="theme-btn">More Detail</a></div>
-                                <div class="price">$ 13,65,000</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="load-more-btn text-center">
-                <a href="#" class="theme-btn btn-style-two">Load More</a>
-            </div>
+      <div class="auto-container">
+        <div class="sec-title">
+            <span class="title">FIND YOUR HOUSE IN YOUR CITY</span>
+            <h2>RECENT PROPERTIES</h2>
         </div>
+        <div class="row">
+            <!-- slide recent property -->
+            <div class="property-block col-lg-4 col-md-6 col-sm-12">
+                <div class="inner-box">
+                    <div class="image-box">
+                        <div class="single-item-carousel owl-carousel owl-theme">
+                        @forelse($recent_slide_properties as $slide_property)
+                        <div class="image-box">
+                            <figure class="image"><img src="{{$slide_property->image}}" alt="" style="max-height:320px;min-height:320px"></figure>
+                         <div class="lower-content">
+                         <ul class="tags">
+                            <li><a href="#">{{$slide_property->views}} views</a>,</li>
+                            <li><a href="#">{{$slide_property->likes()->count()}} likes</a>,</li>
+                            <li><a href="#">{{$slide_property->comments()->count()}} Coments</a></li>
+                            <li><a href="#">@include('front.includes.rating.recent-slide-rating')</a>,</li>
+                        </ul>
+                        <h3><a href="{{route('all.property')}}">{{$slide_property->title}}</a></h3>
+                        <div class="lucation"><i class="la la-map-marker"></i> {{$slide_property->address}}</div>
+                        <ul class="property-info clearfix">
+                            <li><i class="flaticon-dimension"></i>{{$slide_property->area}} sqFt </li>
+                            <li><i class="flaticon-bed"></i> {{$slide_property->nong_of_bedroom}} Bedrooms</li>
+                            <li><i class="flaticon-car"></i> {{$slide_property->nong_of_gourage}}</li>
+                            <li><i class="flaticon-bathtub"></i>{{$slide_property->nong_of_bathroom}}  Bathroom</li>
+                        </ul>
+                        <div class="property-price clearfix">
+                            <div class="read-more"><a href="{{route('property.more.detail',$slide_property->id)}}" class="theme-btn">More Detail</a></div>
+                            <div class="price">$ {{$slide_property->price}}</div>
+                        </div>
+                    </div>
+                    </div>
+
+                        @empty
+                            <figure class="image"><img src="images/" alt="No Property"></figure>
+                        @endforelse
+                        </div>        
+                    </div>
+                </div>
+                <br>
+            </div>
+
+            <!-- mid recent property -->
+             <div class="property-block col-lg-4 col-md-6 col-sm-12">
+                    <div class="inner-box">
+                    <div class="image-box">
+                            <figure class="image"><img src="{{asset($recent_mid_property->image)}}" alt="" style="max-height:320px;min-height:320px"></figure>
+                            <span class="for">{{$recent_mid_property->status}}</span>
+                            <span class="featured">{{$recent_mid_property->property_type}}</span>
+                            <ul class="info clearfix">
+                            <li><a href="properties.html"><i class="la la-calendar-minus-o"></i>{{$recent_mid_property->created_at}}</a></li>
+                            <li><a href="agent-detail.html"><i class="la la-user-secret"></i>$ {{$recent_mid_property->price}}</a></li>
+                        </ul>
+                    </div>
+                    <div class="lower-content">
+                        <ul class="tags">
+                            <li><a href="#">{{$recent_mid_property->views}} views</a>,</li>
+                            <li><a href="#">{{$recent_mid_property->likes()->count()}} likes</a>,</li>
+                            <li><a href="#">{{$recent_mid_property->comments()->count()}} Coments</a></li>
+                            <li><a href="#">@include('front.includes.rating.recent-mid-rating')</a>,</li>
+                        </ul>
+                        <h3><a href="{{route('property.more.detail',$recent_mid_property->id)}}">{{$recent_mid_property->title}}</a></h3>
+                        <div class="lucation"><i class="la la-map-marker"></i> {{$recent_mid_property->address}}</div>
+                         <ul class="property-info clearfix">
+                            <li><i class="flaticon-dimension"></i>{{$recent_mid_property->area}} sqF </li>
+                            <li><i class="flaticon-bed"></i> {{$recent_mid_property->nong_of_bedroom}} Bedrooms</li>
+                            <li><i class="flaticon-car"></i> {{$recent_mid_property->nong_of_gourage}}</li>
+                            <li><i class="flaticon-bathtub"></i>{{$recent_mid_property->nong_of_bathroom}}  Bathroom</li>
+                        </ul>
+                        <div class="property-price clearfix">
+                            <div class="read-more"><a href="{{route('property.more.detail',$recent_mid_property->id)}}" class="theme-btn">More Detail</a></div>
+                            <div class="price">$ {{$recent_mid_property->price}}</div>
+                        </div>
+                     </div>
+                    </div>
+                    <br>
+            </div>
+
+            <!-- last recent Property -->
+            <div class="property-block col-lg-4 col-md-6 col-sm-12">
+                  <div class="inner-box">
+                        @forelse($recent_last_properties as $recent_last_property)
+
+                    <div class="image-box"> 
+                        <figure class="image"><img src="{{asset($recent_last_property->image)}}" alt="" style="max-height:320px;min-height:320px"></figure>
+                        <span class="for">{{$recent_last_property->status}}</span>
+                        <span class="featured">{{$recent_last_property->property_type}}</span>
+                        <div class="video-link">
+                            <a href="">
+
+                      <iframe width="100%" height="100%" src="https://www.youtube.com/embed/2u5cMTnmA0k?start=133" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>     
+                            </a></div>
+                        <ul class="info clearfix">
+                            <li><a href="{{route('properties')}}"><i class="la la-calendar-minus-o"></i>{{$recent_last_property->created_at}}</a></li>
+                            <li><a href="{{route('agent.detail')}}"><i class="la la-user-secret"></i>$ {{$recent_last_property->price}}</a></li>
+                        </ul>
+                    </div>
+                    <div class="lower-content">
+                        <ul class="tags">
+                            <li><a href="#">{{$recent_last_property->views}} views</a>,</li>
+                            <li><a href="#">{{$recent_last_property->likes()->count()}} likes</a>,</li>
+                            <li><a href="#">{{$recent_last_property->comments()->count()}} Coments</a></li>
+                            <li><a href="#">@include('front.includes.rating.recent-last-rating')</a>,</li>
+                        </ul>
+                        <h3><a href="{{route('property.more.detail',$recent_last_property->id)}}">{{$recent_last_property->title}}</a></h3>
+                        <div class="lucation"><i class="la la-map-marker"></i>{{$recent_last_property->address}}</div>
+                        <ul class="property-info clearfix">
+                            <li><i class="flaticon-dimension"></i> {{$recent_last_property->area}}</li>
+                            <li><i class="flaticon-bed"></i> {{$recent_last_property->nong_bed_room}} Bedrooms</li>
+                            <li><i class="flaticon-car"></i> {{$recent_last_property->nong_of_gourage}}</li>
+                            <li><i class="flaticon-bathtub"></i> {{$recent_last_property->bathroom}} Bathroom</li>
+                        </ul>
+                        <div class="property-price clearfix">
+                            <div class="read-more"><a href="{{route('property.more.detail',$recent_last_property->id)}}" class="theme-btn">More Detail</a></div>
+                            <div class="price">$ {{$recent_last_property->price}}</div>
+                        </div>
+                    </div>
+                    @empty
+                     <figure class="image"><img src="image" alt="No Image" ></figure>
+                    @endforelse
+                    </div>
+                  <br>
+            </div>
+            
+        </div>
+     </div>
+                <div class="load-more-btn text-center">
+                    <a href="{{route('all.properties')}}" class="theme-btn btn-style-two">Load More</a>
+                </div>
     </section>
     <!--End Property Section -->
-
     <!-- About Us -->
     <section class="about-us" style="background-image: url(images/background/1.jpg);">
         <div class="auto-container">
@@ -467,6 +352,7 @@
 
                         <div class="row features">
                             <!-- Feature Block -->
+                              @forelse($agents_link as $agent_link)
                             <div class="feature-block col-lg-6 col-md-6 col-sm-12">
                                 <div class="inner-box">
                                     <span class="icon flaticon-house-1"></span>
@@ -474,33 +360,15 @@
                                     <div class="text">We have the best properties Sale, Buy, and Rent Dealers.</div>
                                 </div>
                             </div>
-
-                            <!-- Feature Block -->
-                            <div class="feature-block col-lg-6 col-md-6 col-sm-12">
+                            @empty
+                             <div class="feature-block col-lg-6 col-md-6 col-sm-12">
                                 <div class="inner-box">
                                     <span class="icon flaticon-house-1"></span>
-                                    <h4><a href="{{route('agent')}}">Buy Property</a></h4>
-                                    <div class="text">We have the best properties Sale, Buy, and Rent Dealers.</div>
+                                    <h4><a href="#">Buy Property</a></h4>
+                                    <div class="text">No Property</div>
                                 </div>
                             </div>
-
-                            <!-- Feature Block -->
-                            <div class="feature-block col-lg-6 col-md-6 col-sm-12">
-                                <div class="inner-box">
-                                    <span class="icon flaticon-house-1"></span>
-                                    <h4><a href="{{route('agent')}}">Buy Property</a></h4>
-                                    <div class="text">We have the best properties Sale, Buy, and Rent Dealers.</div>
-                                </div>
-                            </div>
-
-                            <!-- Feature Block -->
-                            <div class="feature-block col-lg-6 col-md-6 col-sm-12">
-                                <div class="inner-box">
-                                    <span class="icon flaticon-house-1"></span>
-                                    <h4><a href="{{route('agent')}}">Buy Property</a></h4>
-                                    <div class="text">We have the best properties Sale, Buy, and Rent Dealers.</div>
-                                </div>
-                            </div>
+                            @endforelse
                         </div>
                     </div>
                 </div>
@@ -509,11 +377,15 @@
                 <div class="video-column col-xl-6 col-lg-7 col-md-12 col-sm-12">
                     <div class="inner-column">
                         <div class="video-box">
-                            <figure class="image"><img src="images/resource/image-2.jpg" alt=""></figure>
-                            <a href="https://www.youtube.com/watch?v=Fvae8nxzVz4" class="play-now" data-fancybox="gallery" data-caption=""><i class="icon la la-play" aria-hidden="true"></i><span class="ripple"></span></a>
+                            <figure class="image"><img src="{{asset('images/resource/image-2.jpg')}}" alt=""></figure>
+                            <a href="https://www.youtube.com/watch?v=Fvae8nxzVz4" class="play-now" data-fancybox="gallery" data-caption=""><i class="icon la la-play" aria-hidden="true"></i><span class="ripple">
+                                
+                              
+                            </span></a>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
@@ -529,102 +401,56 @@
     
             <div class="masonry-items-container clearfix">
                 <!-- Portfolio Item -->
+                @forelse($popular_first_three_properties as $popular_property)
                 <div class="popular-item masonry-item medium-item">
                     <div class="image-box">
-                        <figure class="image"><img src="images/gallery/1-1.jpg" alt=""></figure>
-                        <div class="info-box">
-                            <span class="category">Apartment</span>
-                            <h3 class="place"><a href="{{route('property.detail')}}">New York City</a></h3>
-                            <div class="properties"><a href="{{route('property.detail')}}">7 Properties</a></div>
-                            <div class="view-all"><a href="{{route('properties')}}">View All</a></div>
+                        <figure class="image"><img src="{{$popular_property->image}}" alt="" style="max-height:520px;min-height:520px"></figure>
+                         <div class="info-box">
+                            <span class="category">{{$popular_property->comments()->count()}} Comments</span>
+                            <h3 class="place"><a href="#">{{$popular_property->location}}</a></h3>
+                            <div class="properties"><a href="#"> {{$popular_property->likes()->count()}} likes</a></div>
+                            <div class="view-all"><a href="{{route('property.more.detail',$popular_property->id)}}">View Detail</a></div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Portfolio Item -->
-                <div class="popular-item masonry-item medium-item">
+                @empty
+                 <div class="popular-item masonry-item medium-item">
                     <div class="image-box">
-                        <figure class="image"><img src="images/gallery/1-2.jpg" alt=""></figure>
-                        <div class="info-box">
-                            <span class="category">House</span>
-                            <h3 class="place"><a href="{{route('properties')}}">Los Angeles</a></h3>
-                            <div class="properties"><a href="{{route('properties')}}">9 Properties</a></div>
-                            <div class="view-all"><a href="{{route('properties')}}">View All</a></div>
-                        </div>
+                        <h1>No Property</h1>
                     </div>
-                </div>
-
-                <!-- Portfolio Item -->
-                <div class="popular-item masonry-item medium-item">
-                    <div class="image-box">
-                        <figure class="image"><img src="images/gallery/1-3.jpg" alt=""></figure>
-                        <div class="info-box">
-                            <span class="category">Restaurant</span>
-                            <h3 class="place"><a href="{{route('properties')}}">Singapore</a></h3>
-                            <div class="properties"><a href="{{route('properties')}}">5 Properties</a></div>
-                            <div class="view-all"><a href="{{route('properties')}}">View All</a></div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Portfolio Item -->
+                 </div>
+              
+                @endforelse
+                @forelse($popular_properties_small as $popular_property_small)
+                 <!-- Portfolio Item -->
                 <div class="popular-item masonry-item small-item">
                     <div class="image-box">
-                        <figure class="image"><img src="images/gallery/1-4.jpg" alt=""></figure>
+                        <figure class="image"><img src="{{$popular_property_small->image}}" alt="" style="max-height:255px;min-height:255px"></figure>
                         <div class="info-box">
-                            <span class="category">Farm</span>
-                            <h3 class="place"><a href="{{route('properties')}}">Amalfi Coast</a></h3>
-                            <div class="properties"><a href="{{route('properties')}}">12 Properties</a></div>
-                            <div class="view-all"><a href="{{route('properties')}}">View All</a></div>
+                            <span class="category">{{$popular_property_small->comments()->count()}} Comments</span>
+                            <h3 class="place"><a href="#">{{$popular_property_small->location}}</a></h3>
+                            <div class="properties"><a href="#"> {{$popular_property_small->likes()->count()}} likes</a></div>
+                            <div class="view-all"><a href="{{route('property.more.detail',$popular_property_small->id)}}">View Detail</a></div>
                         </div>
                     </div>
                 </div>
-
-
-                <!-- Portfolio Item -->
+                @empty
+               <!-- Portfolio Item -->
                 <div class="popular-item masonry-item small-item">
                     <div class="image-box">
-                        <figure class="image"><img src="images/gallery/1-5.jpg" alt=""></figure>
-                        <div class="info-box">
-                            <span class="category">Villa</span>
-                            <h3 class="place"><a href="{{route('properties')}}">Miami</a></h3>
-                            <div class="properties"><a href="{{route('properties')}}">6 Properties</a></div>
-                            <div class="view-all"><a href="{{route('properties')}}">View All</a></div>
-                        </div>
+                       <h1>No Property</h1>
                     </div>
-                </div>
+                </div>            
+                @endforelse
             </div>
-
             <!-- Load More -->
             <div class="load-more-btn text-center">
-                <a href="#" class="theme-btn btn-style-two">Load More</a>
-            </div>
+                <a href="{{route('popular.properties')}}" class="theme-btn btn-style-two">Load More</a>
+            </div> 
         </div>
     </section>
     <!--Portfolio Section-->
-
-    <!-- Call To Action -->
-    <section class="call-to-action" style="background-image: url(images/background/2.jpg);">
-        <div class="auto-container">
-            <div class="clearfix">
-                <!-- Title Column -->
-                <div class="title-column">
-                    <div class="sec-title light">
-                        <span class="title">IN FEW SECONDS WITH WILLES</span>
-                        <h2>BUY OR SALE YOUR HOUSE</h2>
-                    </div>
-                </div>
-
-                <!-- Button Column -->
-                <div class="button-column">
-                    <a href="{{route('property.input')}}" class="theme-btn btn-style-three">SUBMIT PROPERTY</a>
-                    <a href="#" class="theme-btn btn-style-one">BROWSE PROPERTY</a>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--End Call To Action -->
-
     <!-- Agents Section -->
     <div class="agents-section">
         <div class="auto-container">
@@ -635,10 +461,11 @@
 
             <div class="agents-carousel owl-carousel owl-theme">
                 <!-- Agent Block -->
+                @forelse($agents as $agent)
                 <div class="agent-block">
                     <div class="inner-box">
                         <div class="image-box">
-                            <figure class="image"><a href="{{route('property.detail')}}"><img src="images/resource/agent-1.jpg" alt=""></a></figure>
+                            <figure class="image"><a href="{{route('property.detail')}}"><img src="{{$agent->image}}" alt="" style="max-height: 300px;min-height: 300px"></a></figure>
                             <ul class="social-links">
                                 <li><a href="#"><i class="la la-facebook-f"></i></a></li>
                                 <li><a href="#"><i class="la la-twitter"></i></a></li>
@@ -648,17 +475,16 @@
                             </ul>
                         </div>
                         <div class="info-box">
-                            <h4 class="name"><a href="{{route('property.input')}}">Magda Anoma</a></h4>
+                            <h4 class="name"><a href="{{route('agent.full.detail',$agent->id)}}">{{$agent->name}}</a></h4>
                             <span class="designation">Real Estate Agent</span>
                         </div>
                     </div>
                 </div>
-
-                <!-- Agent Block -->
-                <div class="agent-block">
+                @empty
+                  <div class="agent-block">
                     <div class="inner-box">
                         <div class="image-box">
-                            <figure class="image"><a href="{{route('property.input')}}"><img src="images/resource/agent-2.jpg" alt=""></a></figure>
+                            <figure class="image"><a href="#"><img src="images" alt="No property"></a></figure>
                             <ul class="social-links">
                                 <li><a href="#"><i class="la la-facebook-f"></i></a></li>
                                 <li><a href="#"><i class="la la-twitter"></i></a></li>
@@ -668,91 +494,12 @@
                             </ul>
                         </div>
                         <div class="info-box">
-                            <h4 class="name"><a href="agent-detail.html">Badoy Ghaly</a></h4>
+                            <h4 class="name"><a href='#'>Magda Anoma</a></h4>
                             <span class="designation">Real Estate Agent</span>
                         </div>
                     </div>
                 </div>
-
-                <!-- Agent Block -->
-                <div class="agent-block">
-                    <div class="inner-box">
-                        <div class="image-box">
-                            <figure class="image"><a href="{{route('agent.detail')}}"><img src="images/resource/agent-3.jpg" alt=""></a></figure>
-                            <ul class="social-links">
-                                <li><a href="#"><i class="la la-facebook-f"></i></a></li>
-                                <li><a href="#"><i class="la la-twitter"></i></a></li>
-                                <li><a href="#"><i class="la la-google-plus"></i></a></li>
-                                <li><a href="#"><i class="la la-dribbble"></i></a></li>
-                                <li><a href="#"><i class="la la-pinterest"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="info-box">
-                            <h4 class="name"><a href="{{route('agent.detail')}}">Lora Ptirayto</a></h4>
-                            <span class="designation">Real Estate Agent</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Agent Block -->
-                <div class="agent-block">
-                    <div class="inner-box">
-                        <div class="image-box">
-                            <figure class="image"><a href="{{route('agent.detail')}}"><img src="images/resource/agent-1.jpg" alt=""></a></figure>
-                            <ul class="social-links">
-                                <li><a href="#"><i class="la la-facebook-f"></i></a></li>
-                                <li><a href="#"><i class="la la-twitter"></i></a></li>
-                                <li><a href="#"><i class="la la-google-plus"></i></a></li>
-                                <li><a href="#"><i class="la la-dribbble"></i></a></li>
-                                <li><a href="#"><i class="la la-pinterest"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="info-box">
-                            <h4 class="name"><a href="{{route('agent.detail')}}">Magda Anoma</a></h4>
-                            <span class="designation">Real Estate Agent</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Agent Block -->
-                <div class="agent-block">
-                    <div class="inner-box">
-                        <div class="image-box">
-                            <figure class="image"><a href="{{route('agent.detail')}}"><img src="images/resource/agent-2.jpg" alt=""></a></figure>
-                            <ul class="social-links">
-                                <li><a href="#"><i class="la la-facebook-f"></i></a></li>
-                                <li><a href="#"><i class="la la-twitter"></i></a></li>
-                                <li><a href="#"><i class="la la-google-plus"></i></a></li>
-                                <li><a href="#"><i class="la la-dribbble"></i></a></li>
-                                <li><a href="#"><i class="la la-pinterest"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="info-box">
-                            <h4 class="name"><a href="{{route('agent.detail')}}">Badoy Ghaly</a></h4>
-                            <span class="designation">Real Estate Agent</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Agent Block -->
-                <div class="agent-block">
-                    <div class="inner-box">
-                        <div class="image-box">
-                            <figure class="image"><a href="{{route('agent.detail')}}"><img src="images/resource/agent-3.jpg" alt=""></a></figure>
-                            <ul class="social-links">
-                                <li><a href="#"><i class="la la-facebook-f"></i></a></li>
-                                <li><a href="#"><i class="la la-twitter"></i></a></li>
-                                <li><a href="#"><i class="la la-google-plus"></i></a></li>
-                                <li><a href="#"><i class="la la-dribbble"></i></a></li>
-                                <li><a href="#"><i class="la la-pinterest"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="info-box">
-                            <h4 class="name"><a href="{{route('agent.detail')}}">Lora Ptirayto</a></h4>
-                            <span class="designation">Real Estate Agent</span>
-                        </div>
-                    </div>
-                </div>
+                @endforelse
             </div>
         </div>
     </div>
@@ -845,67 +592,4 @@
     </section>
     <!--End News Section -->
 
-    <!-- Main Footer -->
-   @include('front.includes.full-footer')
-    <!-- End Main Footer -->
-</div>
-<!--End pagewrapper-->
-
-<!-- Color Palate / Color Switcher -->
-<div class="color-palate">
-    <div class="color-trigger">
-        <i class="la la-cog"></i>
-    </div>
-    <div class="color-palate-head">
-        <h6>Choose Your Color</h6>
-    </div>
-    <div class="various-color clearfix">
-        <div class="colors-list">
-            <span class="palate default-color active" data-theme-file="css/color-themes/default-theme.css"></span>
-            <span class="palate green-color" data-theme-file="css/color-themes/green-theme.css"></span>
-            <span class="palate blue-color" data-theme-file="css/color-themes/blue-theme.css"></span>
-            <span class="palate orange-color" data-theme-file="css/color-themes/orange-theme.css"></span>
-            <span class="palate purple-color" data-theme-file="css/color-themes/purple-theme.css"></span>
-            <span class="palate teal-color" data-theme-file="css/color-themes/teal-theme.css"></span>
-            <span class="palate brown-color" data-theme-file="css/color-themes/brown-theme.css"></span>
-            <span class="palate redd-color" data-theme-file="css/color-themes/redd-color.css"></span>
-        </div>
-    </div>
-    <ul class="box-version option-box"> <li>Full width</li> <li class="box">Boxed</li> </ul>
-    <ul class="rtl-version option-box"> <li>LTR Version</li> <li class="rtl">RTL Version</li> </ul>
-    <div class="palate-foo">
-        <span>You will find much more options for colors and styling in admin panel. This color picker is used only for demonstation purposes.</span>
-    </div>
-    <a href="#" class="purchase-btn">Purchase now $17</a>
-</div><!-- End Color Switcher -->
-
-<script src="realestate/js/jquery.js"></script> 
-<script src="realestate/js/popper.min.js"></script>
-<script src="realestate/js/bootstrap.min.js"></script>
-<!--Revolution Slider-->
-<script src="realestate/plugins/revolution/js/jquery.themepunch.revolution.min.js"></script>
-<script src="realestate/plugins/revolution/js/jquery.themepunch.tools.min.js"></script>
-<script src="realestate/plugins/revolution/js/extensions/revolution.extension.actions.min.js"></script>
-<script src="realestate/plugins/revolution/js/extensions/revolution.extension.carousel.min.js"></script>
-<script src="realestate/plugins/revolution/js/extensions/revolution.extension.kenburn.min.js"></script>
-<script src="realestate/plugins/revolution/js/extensions/revolution.extension.layeranimation.min.js"></script>
-<script src="realestate/plugins/revolution/js/extensions/revolution.extension.migration.min.js"></script>
-<script src="realestate/plugins/revolution/js/extensions/revolution.extension.navigation.min.js"></script>
-<script src="realestate/plugins/revolution/js/extensions/revolution.extension.parallax.min.js"></script>
-<script src="realestate/plugins/revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
-<script src="realestate/plugins/revolution/js/extensions/revolution.extension.video.min.js"></script>
-<script src="realestate/js/main-slider-script.js"></script>
-<!--End Revolution Slider-->
-<script src="realestate/js/jquery-ui.js"></script>
-<script src="realestate/js/jquery.fancybox.js"></script>
-<script src="realestate/js/owl.js"></script>
-<script src="realestate/js/wow.js"></script>
-<script src="realestate/js/isotope.js"></script>
-<script src="realestate/js/appear.js"></script>
-<script src="realestate/js/script.js"></script>
-<!-- Color Setting -->
-<script src="realestate/js/color-settings.js"></script>
-</body>
-
-<!-- Tiger Cage/ by g4bbar, Thu, 24 Jan 2019 15:31:55 GMT -->
-</html>
+  @endsection

@@ -32,6 +32,7 @@
    @include('front.includes.full-header')
     <!--End Main Header -->
     <!-- Appointment Section -->
+ @include('admin.dashboard-includes.message')
     <section class="appointment-section">
         <div class="auto-container">
             <div class="row">
@@ -44,7 +45,6 @@
                         <div class="text">Please fill out the booking form and very soon we will contact with you to schedule an appointment. </div>
                     </div>
                 </div>
-
                 <div class="form-column col-xl-8 col-lg-12 col-md-12 col-sm-12">
                     <div class="inner-column">
                         <!-- Appointment Form -->
@@ -87,7 +87,6 @@
         </div>
     </section>
     <!--End FAQ Form Section -->
-
     <!-- Agents Section -->
     <div class="agents-section">
         <div class="auto-container">
