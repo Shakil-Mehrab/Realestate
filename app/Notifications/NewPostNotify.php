@@ -45,7 +45,7 @@ class NewPostNotify extends Notification
                     ->greeting('Hellow Viwers')
                     ->subject($this->submit_properties->title)
                     ->line('New Post By'.$this->submit_properties->user->name)
-                    ->action('Click here to view the News', route('property.more.detail',$this->submit_properties->id))
+                    ->action('Click here to view the News', route('property.detail',$this->submit_properties->id))
                     ->line('Na Dekhle Chram Miss');
     }
 

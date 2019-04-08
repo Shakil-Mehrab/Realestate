@@ -29,41 +29,47 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 <!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script><![endif]-->
 <!--[if lt IE 9]><script src="js/respond.js"></script><![endif]-->
+ @yield('link')
+    {{--     vuejs code --}}
+   {{--  <script src="{{ asset('js/app.js') }}" defer></script>
+    <script>
+        window.Laravel={!! json_encode([
+            "csrfToken"=>csrf_token(),
+         ]) !!};
+    </script> --}}
 </head>
 
 <body>
+<div id="app">
+    <div class="page-wrapper">
+        <!-- Preloader -->
+        <div class="preloader"></div>
+        <?php
+        use App\Model\Property;
+        use App\Comment;
+        ?>
+         <!-- Main Header-->
+        <header class="main-header header-style-one">
+            <!--Header Top-->
+            @include('front.includes.index-header.top-header') 
+                <!-- End Header Top -->
 
+            <!-- Header Lower -->
+             @include('front.includes.lower-header') 
+            <!--End Header Lower-->
 
-<div class="page-wrapper">
-    <!-- Preloader -->
-    <div class="preloader"></div>
-    <?php
-    use App\Model\Property;
-    use App\Comment;
-    ?>
- <!-- Main Header-->
-<header class="main-header header-style-one">
-<!--Header Top-->
-@include('front.includes.index-header.top-header') 
-    <!-- End Header Top -->
-
-<!-- Header Lower -->
- @include('front.includes.lower-header') 
-<!--End Header Lower-->
-
-<!-- Sticky Header  -->
- @include('front.includes.drop-header') 
- <!-- End Sticky Menu -->
-</header>
-<!--End Main Header -->
-@yield('content')
-
-<!-- Main Footer -->
-    @include('front.includes.full-footer')
-    <!-- End Main Footer -->
-</div>
+            <!-- Sticky Header  -->
+             @include('front.includes.drop-header') 
+             <!-- End Sticky Menu -->
+        </header>
+        <!--End Main Header -->
+        @yield('content')
+        <!-- Main Footer -->
+        @include('front.includes.full-footer')
+        <!-- End Main Footer -->
+    </div>
 <!--End pagewrapper-->
-
+</div>
 <!-- Color Palate / Color Switcher -->
 <div class="color-palate">
     <div class="color-trigger">
@@ -117,21 +123,6 @@
 <script src="{{asset('realestate/js/appear.js')}}"></script>
 <script src="{{asset('realestate/js/script.js')}}"></script>
 <!-- Color Setting -->
-<script src="{{asset('realestate/js/color-settings.js')}}"></script>
-
-<script src="{{asset('ratingcss/bootstrap/js/bootstrap.js')}}"></script>
-<script src="{{asset('ratingcss/bootstrap/js/jquery.min.js')}}"></script>
-<script src="{{asset('ratingcss/bootstrap/js/rating.js')}}"></script>    
-<script>
-$('.ratings').rating(function(vote,event){
-  $.ajax({
-    method:"POST",
-    url:'{{ url('edit-star') }}',
-    data:{vote:vote}
-  }).done(function(info){
-    $('.info').html("your vote: <b>"+info+"<b>")
-  })
-})
-</script>
+<script src="{{asset('realestate/js/color-settings.js')}}"></script>    
 </body>
 </html>

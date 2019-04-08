@@ -17,26 +17,18 @@ class CreatePropertiesTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned()->index(); 
             $table->string('title');
+            $table->integer('category_id')->unsigned();
             $table->string('property_type');
-            $table->string('country');
-            $table->string('status');
             $table->string('image')->default('default.jpg');
             $table->string('area');
-            $table->integer('nong_of_kitchen');
-            $table->integer('nong_of_bedroom');
-            $table->integer('nong_of_bathroom');
             $table->string('address');
-            $table->string('state');
-            $table->integer('nong_of_gourage');
             $table->integer('price');
-            $table->string('location');
             $table->text('detail');
-            $table->string('checkbox')->nullable();
-            $table->string('name');
             $table->string('email');
             $table->string('phone');
-            $table->integer('views')->default('0');
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
         });
     }
 

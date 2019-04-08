@@ -13,6 +13,9 @@
 	</ol>
 @endsection
 @section('content')
+ <form method="post" action="{{route('property.delete')}}" enctype="multipart/form-data">
+ @csrf
+
     <div class="content-wrapper">
             <h3 class="page-title text-center">Property Table</h3>
             <div class="card">
@@ -24,16 +27,14 @@
                     <thead>
                         <tr>
                             <th>ID</th>
+                            <th><input type="checkbox" id="selectallboxes"></th>
                             <th>Title</th>
-                            <th>Type</th>
-                            <th>Country</th>
-                            <th>Status</th>
+                            <th>Category</th>
+                            <th>Property Type</th>
                             <th>image</th>
                             <th>Area</th> 
                             <th>Address</th>  
-                            <th>State</th>  
                             <th>Price</th>  
-                            <th>Location</th>  
                             <th>Detail</th>  
                             <th>Pho No</th> 
                             <th>View</th>    
@@ -41,32 +42,28 @@
                             <th>Delete</th>    
                         </tr>
                       </thead>
+
                       <tbody>
                         @forelse($properties as $property)
-                       
                         <tr>
                             <td>{{$property->id}}</td>
+                            <td><input type="checkbox" name="checkboxes[]" value="{{$property->id}}" class="checkboxes"></td>
                             <td>{{$property->title}}</td>
+                            <td>{{$property->category->name}}</td>
                             <td>{{$property->property_type}}</td>
-                            <td>{{$property->country}}</td>
-                            <td>{{$property->status}}</td>
                             <td><img src="{{URL::to($property->image)}}" style="max-height:40px;min-height: 40px;max-width: 40px;min-width: 40px"></td>
                             <td>{{$property->area}}</td>
                             <td>{{$property->address}}</td>
-                            <td>{{$property->state}}</td>
                             <td>{{$property->price}}</td>
-                            <td>{{$property->location}}</td>
                             <td>@php echo str_limit($property->detail,10) @endphp</td>
                             <td>{{$property->phone}}</td>
-                            <td> <a href="{{route('property.view',$property->id)}}"><span style="color:green"><i class="far fa-eye"></i></span></a></td>
+                            <td> <a href="{{route('property.detail',$property->id)}}"><span style="color:green"><i class="far fa-eye"></i></span></a></td>
                             <td><a href="{{route('property.edit',$property->id)}}" ><span style=""><i class="fas fa-pencil-alt"></i></span></a></td>
-                            <td><a href="{{route('property.delete',$property->id)}}" id="delete"><span style="color:#DD4F43"><i class="fas fa-trash-alt"></i></span></a></td>
+                            <td><button type="submit"><span style="color:#DD4F43"><i class="fas fa-trash-alt"></i></span></button></td>
+
                          </tr>
                         @empty
                         <tr>
-                            <td><h4></h4></td>
-                            <td><h4></h4></td>
-                            <td><h4></h4></td>
                             <td><h4></h4></td>
                             <td><h4></h4></td>
                             <td><h4></h4></td>
@@ -77,9 +74,7 @@
                             <td><h4></h4></td>
                             <td><h4></h4></td>     
                             <td><h4></h4></td>  
-                            <td><h4></h4></td>                            
-                            <td><h4></h4></td>                            
-                            <td><h4></h4></td>                                  
+                            <td><h4></h4></td> 
                         </tr>
                         @endforelse
                       </tbody>
@@ -89,6 +84,7 @@
               </div>
             </div>
           </div>
+      </form>
 @endsection
 @section('js')
 <!-- table js-->	
@@ -96,6 +92,8 @@
 <script src="{{asset('style/admin/table/node_modules/datatables.net/js/jquery.dataTables.js')}}"></script>
 <script src="{{asset('style/admin/table/node_modules/datatables.net-bs4/js/dataTables.bootstrap4.js')}}"></script>
 <script src="{{asset('style/admin/table/js/data-table.js')}}"></script>
+<script src="{{asset('js/multipleselection/selection.js')}}"></script>
+
 <!-- end table js -->
 @endsection
 

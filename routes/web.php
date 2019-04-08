@@ -1,7 +1,115 @@
 <?php
 
 
-Route::get('/','frontController@welcome');
+Route::get('/','Layout\FrontController@welcome');
+//front property
+//all Property
+Route::get('/property/detail/{property_id}', [
+    'uses'=>'Layout\SinglePropertyController@getpropertyMoreDetail',
+    'as'=>'property.detail'
+    ]);
+Route::get('/all/properties', [
+    'uses'=>'Layout\FrontController@getAllProperty',
+    'as'=>'all.properties'
+    ]);
+Route::get('/popular/properties', [
+    'uses'=>'Layout\FrontController@getAllPoplarProperty',
+    'as'=>'popular.properties'
+    ]);
+Route::get('/comming/soon', [
+    'uses'=>'Layout\FrontController@getCommingSoonProperty',
+    'as'=>'comming.soon'
+    ]);
+Route::get('/header/one', [
+    'uses'=>'Layout\FrontController@getHeaderOne',
+    'as'=>'header.one'
+    ]);
+Route::get('/header/two', [
+    'uses'=>'Layout\FrontController@getHeaderTwo',
+    'as'=>'header.two'
+    ]);
+Route::get('/header/three', [
+    'uses'=>'Layout\FrontController@getHeaderThree',
+    'as'=>'header.three'
+    ]);
+Route::get('/header/four', [
+    'uses'=>'Layout\FrontController@getHeaderFour',
+    'as'=>'header.four'
+    ]);
+Route::get('/header/five', [
+    'uses'=>'Layout\FrontController@getHeaderFive',
+    'as'=>'header.five'
+    ]);
+Route::get('/front/video', [
+    'uses'=>'Layouts\VideoController@getAllVideos',
+    'as'=>'header.six'
+    ]);
+Route::get('/about/us', [
+    'uses'=>'Layout\AboutController@getAboutUs',
+    'as'=>'about.us'
+    ]);
+Route::get('/faq', [
+    'uses'=>'Layout\AboutController@getFaqs',
+    'as'=>'faqs'
+    ]);
+Route::get('/testimonial', [
+    'uses'=>'Layout\AboutController@getTestimonials',
+    'as'=>'testimonials'
+    ]);
+Route::get('/properties', [
+    'uses'=>'Layout\PropertyController@getProperties',
+    'as'=>'properties'
+    ]);
+
+Route::get('/property/list/view', [
+    'uses'=>'Layout\PropertyController@getPropertyListView',
+    'as'=>'property.list.view'
+    ]);
+Route::get('/property/grid/view', [
+    'uses'=>'Layout\PropertyController@getPropertyGridView',
+    'as'=>'property.grid.view'
+    ]);
+Route::get('/property/modern/view', [
+    'uses'=>'Layout\PropertyController@getPropertyModernView',
+    'as'=>'property.modern.view'
+    ]);
+Route::get('/blog/default', [
+    'uses'=>'Layout\BlogController@getBlogDefault',
+    'as'=>'blog.default'
+    ]);
+Route::get('/blog/list/view', [
+    'uses'=>'Layout\BlogController@getBlogListView',
+    'as'=>'blog.list.view'
+    ]);
+Route::get('/blog/grid/view', [
+    'uses'=>'Layout\BlogController@getBlogyGridView',
+    'as'=>'blog.grid.view'
+    ]);
+Route::get('/blog/detail', [
+    'uses'=>'Layout\BlogController@getBlogDetail',
+    'as'=>'blog.detail'
+    ]);
+Route::get('/contact', [
+    'uses'=>'Layout\ContactController@getContact',
+    'as'=>'contact'
+    ]);
+Route::get('/all/property', [
+    'uses'=>'Layout\frontController@getAllProperty',
+    'as'=>'all.property'
+    ]);
+Route::get('/front/agent', [
+    'uses'=>'Layout\AgentController@getAgent',
+    'as'=>'front.agent'
+    ]);
+Route::get('/agent/detail/{agent_id}', [
+    'uses'=>'Layout\AgentController@getAgentDetail',
+    'as'=>'agent.detail'
+    ]);
+Route::post('/subscriber/post', [
+    'uses'=>'Layout\SubscriberController@postSubscriber',
+    'as'=>'post.subscriber'
+    ]);
+
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -17,55 +125,63 @@ Route::post('/password/reset', 'Auth\AdminResetPasswordController@reset')->name(
 });
 
 
-Route::group(['prefix'=>'super-admin','middleware'=>['admin']],function(){
-//Action
-Route::get('/view-property/{property_id}', [
-    'uses'=>'ActionController@getViewProperty',
-    'as'=>'property.view'
-    ]); 
-Route::get('/edit-property/{property_id}', [
-    'uses'=>'ActionController@getEditProperty',
-    'as'=>'property.edit'
-     ]);
-Route::post('/post-property/{property_id}', [
-    'uses'=>'ActionController@postEditedProperty',
-    'as'=>'post.edit'
-    ]); 
-Route::get('/delete-property/{delete_id}', [
-    'uses'=>'ActionController@getDeleteProperty',
+Route::group(['prefix'=>'super/admin','middleware'=>['admin']],function(){
+//Action 
+Route::post('/property/delete', [
+    'uses'=>'Layouts\PropertyController@getDeleteProperty',
     'as'=>'property.delete'
     ]); 
 //Agent
-Route::get('/create-agent', [
-    'uses'=>'AgentController@getCreateAgent',
-    'as'=>'create.agent'
+Route::get('/agent/index', [
+    'uses'=>'Layouts\AgentController@Index',
+    'as'=>'agent.index'
     ]);
-Route::post('/post-agent', [
-    'uses'=>'AgentController@postSubmitAgent',
-    'as'=>'post.agent'
+Route::get('/agent/create', [
+    'uses'=>'Layouts\AgentController@create',
+    'as'=>'agent.create'
     ]);
-Route::get('/agent', [
-    'uses'=>'AgentController@getAgent',
-    'as'=>'agent'
+Route::post('/agent/store', [
+    'uses'=>'Layouts\AgentController@store',
+    'as'=>'agent.store'
     ]);
-Route::get('/agent-detail', [
-    'uses'=>'AgentController@getAgentDetail',
-    'as'=>'agent.detail'
+Route::get('/agent/edit/{agent_id}', [
+    'uses'=>'Layouts\AgentController@edit',
+    'as'=>'agent.edit'
     ]);
- Route::get('/agent-full-detail/{agent_id}', [
-    'uses'=>'AgentController@getAgentDetail',
-    'as'=>'agent.full.detail'
+Route::post('/agent/update/{agent_id}', [
+    'uses'=>'Layouts\AgentController@update',
+    'as'=>'agent.update'
     ]);
-     
+Route::post('/agent/delete', [
+    'uses'=>'Layouts\AgentController@delete',
+    'as'=>'agent.delete'
+    ]);
 });
 
  
 //user Auth
 Route::group(['prefix'=>'user','middleware'=>['auth']],function(){
-Route::get('/dashboard', [
-    'uses'=>'frontController@getDashboard',
-    'as'=>'dashboard'
+//Categories
+Route::get('/category/index', [
+    'uses'=>'Layouts/CategoryController@index',
+    'as'=>'category.index'
+    ]); 
+Route::get('/category/index', [
+    'uses'=>'Layouts\CategoryController@Index',
+    'as'=>'category.index'
     ]);
+Route::post('/category/store', [
+    'uses'=>'Layouts\CategoryController@store',
+    'as'=>'category.store'
+    ]);
+Route::post('/category/update/{category_id}', [
+    'uses'=>'Layouts\CategoryController@update',
+    'as'=>'category.update'
+    ]);
+Route::post('/category/delete', [
+    'uses'=>'Layouts\CategoryController@delete',
+    'as'=>'category.delete'
+    ]);   
 Route::get('/bookings', [
     'uses'=>'AdminController@getBookings',
     'as'=>'bookings'
@@ -86,49 +202,40 @@ Route::get('/my-profile', [
     'uses'=>'AdminController@getMyProfile',
     'as'=>'my.profile'
     ]);
-Route::get('/my-properties', [
+Route::get('/my/properties', [
     'uses'=>'AdminController@getMyProperties',
     'as'=>'my.properties'
     ]);
-Route::get('/view-property/{property_id}', [
-    'uses'=>'ActionController@getViewProperty',
-    'as'=>'property.view'
-    ]); 
 
 //Create Property 
-Route::get('/property-input', [
-    'uses'=>'AdminController@getPropertyInput',
+Route::get('/property/create', [
+    'uses'=>'Layouts\PropertyController@crate',
     'as'=>'property.input'
     ]);
-Route::get('/test', function() {
-    $notifications=auth()->user()->unreadNotifications;
-    foreach($notifications as $notification){
-        dd($notification->data['user']['name']);
-    } 
-    }); 
-Route::post('/post-property', [
-    'uses'=>'AdminController@postSubmitProperty',
-    'as'=>'post.property'
+Route::post('/property/store', [
+    'uses'=>'Layouts\PropertyController@store',
+    'as'=>'property.store'
     ]);
-Route::post('/post-images/{property_id}', [
-    'uses'=>'MediaController@postSubmItimages',
+Route::get('/property/edit/{property_id}', [
+    'uses'=>'Layouts\PropertyController@getEditProperty',
+    'as'=>'property.edit'
+     ]);
+Route::post('/property/update/{property_id}', [
+    'uses'=>'Layouts\PropertyController@postEditedProperty',
+    'as'=>'property.update'
+    ]);
+Route::post('/images/store/{property_id}', [
+    'uses'=>'Layouts\MediaController@postSubmItimages',
     'as'=>'post.images'
     ]);
-Route::post('/post-video/{property_id}', [
-    'uses'=>'VideoController@postSubmitVideo',
-    'as'=>'post.video'
+Route::post('/video/store/{property_id}', [
+    'uses'=>'Layouts\VideoController@postSubmitVideo',
+    'as'=>'video.store'
     ]);
 //Action
-Route::post('/comment-store/{property_id}', [
-    'uses'=>'CommentController@postCommentStore',
-    'as'=>'comment.store'
-    ]); 
-Route::get('/comment-show/{comment_id}', [
-    'uses'=>'CommentController@getCommentShow',
-    'as'=>'comment.show'
-    ]);
-Route::post('/reply-store/{comment_id}', [
-    'uses'=>'ReplyController@postReplyStore',
+Route::resource('/review','Layouts\CommentController');
+Route::post('/reply-store', [
+    'uses'=>'Layouts\ReplyController@postReplyStore',
     'as'=>'reply.post'
     ]);
   
@@ -137,123 +244,3 @@ Route::post('/like-property', [
     'as'=>'toggleLike'
     ]);
 });  
-//front property
-//all Property
-Route::get('/all-properties', [
-    'uses'=>'PropertyController@getAllProperty',
-    'as'=>'all.properties'
-    ]);
-Route::get('/popular-properties', [
-    'uses'=>'PropertyController@getAllPoplarProperty',
-    'as'=>'popular.properties'
-    ]);
-Route::get('/property-more-detail/{property_id}', [
-    'uses'=>'PropertyController@getpropertyMoreDetail',
-    'as'=>'property.more.detail'
-    ]);
-
-Route::get('/comming-soon', [
-    'uses'=>'frontController@getCommingSoonProperty',
-    'as'=>'comming.soon'
-    ]);
-Route::get('/header-one', [
-    'uses'=>'frontController@getHeaderOne',
-    'as'=>'header.one'
-    ]);
-Route::get('/header-two', [
-    'uses'=>'frontController@getHeaderTwo',
-    'as'=>'header.two'
-    ]);
-Route::get('/header-three', [
-    'uses'=>'frontController@getHeaderThree',
-    'as'=>'header.three'
-    ]);
-Route::get('/header-four', [
-    'uses'=>'frontController@getHeaderFour',
-    'as'=>'header.four'
-    ]);
-Route::get('/header-five', [
-    'uses'=>'frontController@getHeaderFive',
-    'as'=>'header.five'
-    ]);
-Route::get('/front-video', [
-    'uses'=>'VideoController@getAllVideos',
-    'as'=>'header.six'
-    ]);
-Route::get('/about-us', [
-    'uses'=>'frontController@getAboutUs',
-    'as'=>'about.us'
-    ]);
-Route::get('/faq', [
-    'uses'=>'frontController@getFaqs',
-    'as'=>'faqs'
-    ]);
-Route::get('/testimonial', [
-    'uses'=>'frontController@getTestimonials',
-    'as'=>'testimonials'
-    ]);
-Route::get('/properties', [
-    'uses'=>'frontController@getProperties',
-    'as'=>'properties'
-    ]);
-
-Route::get('/property-list-view', [
-    'uses'=>'frontController@getPropertyListView',
-    'as'=>'property.list.view'
-    ]);
-Route::get('/property-grid-view', [
-    'uses'=>'frontController@getPropertyGridView',
-    'as'=>'property.grid.view'
-    ]);
-Route::get('/property-modern-view', [
-    'uses'=>'frontController@getPropertyModernView',
-    'as'=>'property.modern.view'
-    ]);
-
-Route::get('/property-detail', [
-    'uses'=>'frontController@getpropertyDetail',
-    'as'=>'property.detail'
-    ]);
-Route::get('/blog-default', [
-    'uses'=>'frontController@getBlogDefault',
-    'as'=>'blog.default'
-    ]);
-Route::get('/blog-list-view', [
-    'uses'=>'frontController@getBlogListView',
-    'as'=>'blog.list.view'
-    ]);
-Route::get('/blog-grid-view', [
-    'uses'=>'frontController@getBlogyGridView',
-    'as'=>'blog.grid.view'
-    ]);
-Route::get('/blog-detail', [
-    'uses'=>'frontController@getBlogDetail',
-    'as'=>'blog.detail'
-    ]);
-Route::get('/contact', [
-    'uses'=>'frontController@getContact',
-    'as'=>'contact'
-    ]);
-Route::post('/target-property-search', [
-    'uses'=>'frontController@postTargetPropertySearch',
-    'as'=>'target.property.search'
-    ]);
-Route::get('/all-property', [
-    'uses'=>'frontController@getAllProperty',
-    'as'=>'all.property'
-    ]);
-Route::get('/detail-property/{detail_id}', [
-    'uses'=>'frontController@getDetailProperty',
-    'as'=>'detail.property'
-    ]);
-Route::get('/rating-test', [
-    'uses'=>'frontController@rating',
-    'as'=>'rating.test'
-    ]);
-Route::post('/subscriber-post', [
-    'uses'=>'SubscriberController@postSubscriber',
-    'as'=>'post.subscriber'
-    ]);
-Route::get('/edit-star', function () {
-    return view('front.page.insrating');
-});

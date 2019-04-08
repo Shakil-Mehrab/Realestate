@@ -1,8 +1,9 @@
 @php
+use App\User_property_views;
 use App\Model\Property;
 use App\Comment;
 $total_property=Property::all()->count('id');
-$total_views=Property::all()->sum('views');
+$total_views=User_property_views::all()->sum('count');
 $total_comment=Comment::all()->count('id');
 @endphp
 <div class="row">

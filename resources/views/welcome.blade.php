@@ -5,11 +5,11 @@
             <div class="rev_slider_wrapper fullwidthbanner-container"  id="rev_slider_one_wrapper" data-source="gallery">
                 <div class="rev_slider fullwidthabanner" id="rev_slider_one" data-version="5.4.1">
                     <ul>
-                        @forelse($most_popular_properties as $most_popular_property)
+                        @forelse($popular_properties->limit(2)->get() as $popular_property)
                         <!-- Slide 1 -->
-                        <li data-description="Slide Description" data-easein="default" data-easeout="default" data-fsmasterspeed="1500" data-fsslotamount="7" data-fstransition="fade" data-hideafterloop="0" data-hideslideonmobile="off" data-index="rs-1689" data-masterspeed="default" data-param1="" data-param10="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-rotate="0" data-saveperformance="off" data-slotamount="default" data-thumb="{{asset($most_popular_property->image)}}" data-title="Slide Title" data-transition="parallaxvertical">
+                        <li data-description="Slide Description" data-easein="default" data-easeout="default" data-fsmasterspeed="1500" data-fsslotamount="7" data-fstransition="fade" data-hideafterloop="0" data-hideslideonmobile="off" data-index="rs-1689" data-masterspeed="default" data-param1="" data-param10="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-rotate="0" data-saveperformance="off" data-slotamount="default" data-thumb="images/main-slider/image-2.jpg" data-title="Slide Title" data-transition="parallaxvertical">
                           
-                            <img alt="" class="rev-slidebg" data-bgfit="cover" data-bgparallax="10" data-bgposition="center center" data-bgrepeat="no-repeat" data-kenburns="on" data-duration="10000" data-ease="Linear.easeNone" data-scalestart="100" data-scaleend="120" src="{{asset($most_popular_property->image)}}"> 
+                            <img alt="" class="rev-slidebg" data-bgfit="cover" data-bgparallax="10" data-bgposition="center center" data-bgrepeat="no-repeat" data-kenburns="on" data-duration="10000" data-ease="Linear.easeNone" data-scalestart="100" data-scaleend="120" src="{{asset($popular_property->property->image)}}"> 
 
                             <div class="tp-caption" 
                             data-paddingbottom="[0,0,0,0]"
@@ -30,16 +30,20 @@
                                 <div class="content-box">
                                     <div class="inner-box">
                                         <div class="title-box">
-                                            <h3>{{$most_popular_property->tile}}</h3>
-                                            <p>{{$most_popular_property->address}}</p>
+                                            <a href="{{route('property.detail',$popular_property->property_id)}}"><h3>{{$popular_property->property->title}}</h3></a>
+                                            <p>{{$popular_property->property->address}}</p>
                                         </div>
                                         <ul class="info-list">
                                         <li><span>
-                                        @include('front.includes.rating.most-popular-rating')
+                                        <star-rating 
+                                        :star-size="20" :read-only="true"
+                                        :rating="{{$popular_property->property->getStarRating()}}"
+                                        :increment="0.01">
+                                        </star-rating>
                                         </span> Rating</li>
-                            <li><span>{{$most_popular_property->views}}</span>Views</li>
+                            <li><span>{{$popular_property->property->views()}}</span>Views</li>
                         </ul>
-                      <div class="price">${{$most_popular_property->price}}</div>
+                      <div class="price">${{$popular_property->property->price}}</div>
                        <div class="btn-box"><a href="agent-detail.html" class="theme-btn btn-style-one">CONTACT AGENT</a></div>
                     </div>
                   </div>
@@ -87,6 +91,7 @@
                     <!--Tab / Active Tab-->
                     <div class="tab active-tab" id="sale">                         
                         <div class="property-search-form">
+                            @include('admin.dashboard-includes.message')
                             <form method="post" action="{{route('post.subscriber')}}">
                                 @csrf
                                 <div class="row">
@@ -112,6 +117,7 @@
                             </form>
                         </div>
                     </div>
+                    
                     <!--Tab -->
                     <div class="tab" id="rent">
                         <div class="property-search-form">
@@ -213,27 +219,32 @@
                 <div class="inner-box">
                     <div class="image-box">
                         <div class="single-item-carousel owl-carousel owl-theme">
-                        @forelse($recent_slide_properties as $slide_property)
+                        @forelse($properties->limit(5)->get() as $property)
                         <div class="image-box">
-                            <figure class="image"><img src="{{$slide_property->image}}" alt="" style="max-height:320px;min-height:320px"></figure>
+                            <figure class="image"><img src="{{$property->image}}" alt="" style="max-height:320px;min-height:320px"></figure>
                          <div class="lower-content">
                          <ul class="tags">
-                            <li><a href="#">{{$slide_property->views}} views</a>,</li>
-                            <li><a href="#">{{$slide_property->likes()->count()}} likes</a>,</li>
-                            <li><a href="#">{{$slide_property->comments()->count()}} Coments</a></li>
-                            <li><a href="#">@include('front.includes.rating.recent-slide-rating')</a>,</li>
+                            <li><a href="#">{{$property->views()}} views</a>,</li>
+                            <li><a href="#">{{$property->TotalComment()}} Coments</a></li>
+                            <li><a href="#">
+                                        <star-rating 
+                                        :star-size="20" :read-only="true"
+                                        :rating="{{$property->getStarRating()}}"
+                                        :increment="0.01">
+                                        </star-rating>
+                        </a>,</li>
                         </ul>
-                        <h3><a href="{{route('property.more.detail',$slide_property->id)}}">{{$slide_property->title}}</a></h3>
-                        <div class="lucation"><i class="la la-map-marker"></i> {{$slide_property->address}}</div>
+                        <h3><a href="{{route('property.detail',$property->id)}}">@php echo str_limit($property->title,25) @endphp</a></h3>
+                        <div class="lucation"><i class="la la-map-marker"></i>@php echo str_limit($property->address,45) @endphp</div>
                         <ul class="property-info clearfix">
-                            <li><i class="flaticon-dimension"></i>{{$slide_property->area}} sqFt </li>
-                            <li><i class="flaticon-bed"></i> {{$slide_property->nong_of_bedroom}} Bedrooms</li>
-                            <li><i class="flaticon-car"></i> {{$slide_property->nong_of_gourage}}</li>
-                            <li><i class="flaticon-bathtub"></i>{{$slide_property->nong_of_bathroom}}  Bathroom</li>
+                            <li><i class="flaticon-dimension"></i> {{$property->area}} sqFt </li>
+                            <li><i class="fas fa-truck-moving"></i> {{$property->property_type}}</li>
+                            <li><i class="fas fa-home"></i> {{$property->category->name}}</li>
+                            <li><i class="fas fa-phone-square"></i> {{$property->phone}}</li>
                         </ul>
                         <div class="property-price clearfix">
-                            <div class="read-more"><a href="{{route('property.more.detail',$slide_property->id)}}" class="theme-btn">More Detail</a></div>
-                            <div class="price">$ {{$slide_property->price}}</div>
+                            <div class="read-more"><a href="{{route('property.detail',$property->id)}}" class="theme-btn">More Detail</a></div>
+                            <div class="price">$ {{$property->price}}</div>
                         </div>
                     </div>
                     </div>
@@ -250,35 +261,39 @@
             <!-- mid recent property -->
              <div class="property-block col-lg-4 col-md-6 col-sm-12">
                     <div class="inner-box">
-                        @forelse($recent_mid_properties as $recent_mid_property)
-
+                    @forelse($properties->skip(5)->limit(1)->get() as $property)
                     <div class="image-box">
-                            <figure class="image"><img src="{{asset($recent_mid_property->image)}}" alt="" style="max-height:320px;min-height:320px"></figure>
-                            <span class="for">{{$recent_mid_property->status}}</span>
-                            <span class="featured">{{$recent_mid_property->property_type}}</span>
+                            <figure class="image"><img src="{{asset($property->image)}}" alt="" style="max-height:320px;min-height:320px"></figure>
+                            <span class="for">{{$property->status}}</span>
+                            <span class="featured">{{$property->property_type}}</span>
                             <ul class="info clearfix">
-                            <li><a href="properties.html"><i class="la la-calendar-minus-o"></i>{{$recent_mid_property->created_at}}</a></li>
-                            <li><a href="agent-detail.html"><i class="la la-user-secret"></i>$ {{$recent_mid_property->price}}</a></li>
+                            <li><a href="properties.html"><i class="la la-calendar-minus-o"></i>{{$property->created_at->diffForhumans()}}</a></li>
+                            <li><a href="agent-detail.html"><i class="la la-user-secret"></i>$ {{$property->price}}</a></li>
                         </ul>
                     </div>
                     <div class="lower-content">
                         <ul class="tags">
-                            <li><a href="#">{{$recent_mid_property->views}} views</a>,</li>
-                            <li><a href="#">{{$recent_mid_property->likes()->count()}} likes</a>,</li>
-                            <li><a href="#">{{$recent_mid_property->comments()->count()}} Coments</a></li>
-                            <li><a href="#">@include('front.includes.rating.recent-mid-rating')</a>,</li>
+                            <li><a href="#">{{$property->views()}} views</a>,</li>
+                            <li><a href="#">{{$property->TotalComment()}} Coments</a></li>
+                            <li><a href="#">
+                                <star-rating 
+                                :star-size="20" :read-only="true"
+                                :rating="{{$property->getStarRating()}}"
+                                :increment="0.01">
+                                </star-rating>
+                            </a>,</li>
                         </ul>
-                        <h3><a href="{{route('property.more.detail',$recent_mid_property->id)}}">{{$recent_mid_property->title}}</a></h3>
-                        <div class="lucation"><i class="la la-map-marker"></i> {{$recent_mid_property->address}}</div>
-                         <ul class="property-info clearfix">
-                            <li><i class="flaticon-dimension"></i>{{$recent_mid_property->area}} sqF </li>
-                            <li><i class="flaticon-bed"></i> {{$recent_mid_property->nong_of_bedroom}} Bedrooms</li>
-                            <li><i class="flaticon-car"></i> {{$recent_mid_property->nong_of_gourage}}</li>
-                            <li><i class="flaticon-bathtub"></i>{{$recent_mid_property->nong_of_bathroom}}  Bathroom</li>
+                        <h3><a href="{{route('property.detail',$property->id)}}">@php echo str_limit($property->title,25) @endphp</a></h3>
+                        <div class="lucation"><i class="la la-map-marker"></i>@php echo str_limit($property->address,45) @endphp</div>
+                        <ul class="property-info clearfix">
+                            <li><i class="flaticon-dimension"></i> {{$property->area}} sqFt </li>
+                            <li><i class="fas fa-truck-moving"></i> {{$property->property_type}}</li>
+                            <li><i class="fas fa-home"></i> {{$property->category->name}}</li>
+                            <li><i class="fas fa-phone-square"></i> {{$property->phone}}</li>
                         </ul>
                         <div class="property-price clearfix">
-                            <div class="read-more"><a href="{{route('property.more.detail',$recent_mid_property->id)}}" class="theme-btn">More Detail</a></div>
-                            <div class="price">$ {{$recent_mid_property->price}}</div>
+                            <div class="read-more"><a href="{{route('property.detail',$property->id)}}" class="theme-btn">More Detail</a></div>
+                            <div class="price">$ {{$property->price}}</div>
                         </div>
                      </div>
                      @empty
@@ -291,40 +306,43 @@
             <!-- last recent Property -->
             <div class="property-block col-lg-4 col-md-6 col-sm-12">
                   <div class="inner-box">
-                        @forelse($recent_last_properties as $recent_last_property)
+                        @forelse($videos as $property)
 
                     <div class="image-box"> 
-                        <figure class="image"><img src="{{asset($recent_last_property->image)}}" alt="" style="max-height:320px;min-height:320px"></figure>
-                        <span class="for">{{$recent_last_property->status}}</span>
-                        <span class="featured">{{$recent_last_property->property_type}}</span>
+                        <figure class="image"><img src="" alt="" style="max-height:320px;min-height:320px"></figure>
                         <div class="video-link">
                             <a href="">
 
-                      <iframe width="100%" height="100%" src="https://www.youtube.com/embed/2u5cMTnmA0k?start=133" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>     
+                      <iframe width="100%" height="100%" src="{{asset($property->link)}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>     
                             </a></div>
                         <ul class="info clearfix">
-                            <li><a href="{{route('properties')}}"><i class="la la-calendar-minus-o"></i>{{$recent_last_property->created_at}}</a></li>
-                            <li><a href="{{route('agent.detail')}}"><i class="la la-user-secret"></i>$ {{$recent_last_property->price}}</a></li>
+                            <li><a href="#"><i class="la la-calendar-minus-o"></i>{{$property->property->created_at->diffForhumans()}}</a></li>
+                            <li><a href="#"><i class="la la-user-secret"></i>$ {{$property->property->price}}</a></li>
                         </ul>
                     </div>
                     <div class="lower-content">
                         <ul class="tags">
-                            <li><a href="#">{{$recent_last_property->views}} views</a>,</li>
-                            <li><a href="#">{{$recent_last_property->likes()->count()}} likes</a>,</li>
-                            <li><a href="#">{{$recent_last_property->comments()->count()}} Coments</a></li>
-                            <li><a href="#">@include('front.includes.rating.recent-last-rating')</a>,</li>
+                            <li><a href="#">{{$property->property->views()}} views</a>,</li>
+                            <li><a href="#">{{$property->property->comments->count()}} Coments</a></li>
+                            <li><a href="#">
+                                 <star-rating 
+                                :star-size="20" :read-only="true"
+                                :rating="{{$property->property->getStarRating()}}"
+                                :increment="0.01">
+                                </star-rating>
+                                </a>,</li>
                         </ul>
-                        <h3><a href="{{route('property.more.detail',$recent_last_property->id)}}">{{$recent_last_property->title}}</a></h3>
-                        <div class="lucation"><i class="la la-map-marker"></i>{{$recent_last_property->address}}</div>
-                        <ul class="property-info clearfix">
-                            <li><i class="flaticon-dimension"></i> {{$recent_last_property->area}}</li>
-                            <li><i class="flaticon-bed"></i> {{$recent_last_property->nong_bed_room}} Bedrooms</li>
-                            <li><i class="flaticon-car"></i> {{$recent_last_property->nong_of_gourage}}</li>
-                            <li><i class="flaticon-bathtub"></i> {{$recent_last_property->bathroom}} Bathroom</li>
+                        <h3><a href="{{route('property.detail',$property->property->id)}}">@php echo str_limit($property->property->title,25) @endphp</a></h3>
+                        <div class="lucation"><i class="la la-map-marker"></i>@php echo str_limit($property->property->address,45) @endphp</div>
+                          <ul class="property-info clearfix">
+                            <li><i class="flaticon-dimension"></i> {{$property->property->area}} sqFt </li>
+                            <li><i class="fas fa-truck-moving"></i> {{$property->property->property_type}}</li>
+                            <li><i class="fas fa-home"></i> {{$property->property->category->name}}</li>
+                            <li><i class="fas fa-phone-square"></i> {{$property->property->phone}}</li>
                         </ul>
                         <div class="property-price clearfix">
-                            <div class="read-more"><a href="{{route('property.more.detail',$recent_last_property->id)}}" class="theme-btn">More Detail</a></div>
-                            <div class="price">$ {{$recent_last_property->price}}</div>
+                            <div class="read-more"><a href="{{route('property.detail',$property->property->id)}}" class="theme-btn">More Detail</a></div>
+                            <div class="price">$ {{$property->property->price}}</div>
                         </div>
                     </div>
                     @empty
@@ -357,11 +375,11 @@
 
                         <div class="row features">
                             <!-- Feature Block -->
-                              @forelse($agents_link as $agent_link)
+                              @forelse($agents->limit(4)->get() as $agent)
                             <div class="feature-block col-lg-6 col-md-6 col-sm-12">
                                 <div class="inner-box">
                                     <span class="icon flaticon-house-1"></span>
-                                    <h4><a href="{{route('agent')}}">Buy Property</a></h4>
+                                    <h4><a href="{{route('front.agent')}}">Buy Property</a></h4>
                                     <div class="text">We have the best properties Sale, Buy, and Rent Dealers.</div>
                                 </div>
                             </div>
@@ -406,15 +424,15 @@
     
             <div class="masonry-items-container clearfix">
                 <!-- Portfolio Item -->
-                @forelse($popular_first_three_properties as $popular_property)
+                @forelse($popular_properties->skip(2)->limit(3)->get() as $popular_property)
                 <div class="popular-item masonry-item medium-item">
                     <div class="image-box">
-                        <figure class="image"><img src="{{$popular_property->image}}" alt="" style="max-height:520px;min-height:520px"></figure>
+                        <figure class="image"><img src="{{$popular_property->property->image}}" alt="" style="max-height:520px;min-height:520px"></figure>
                          <div class="info-box">
-                            <span class="category">{{$popular_property->comments()->count()}} Comments</span>
-                            <h3 class="place"><a href="#">{{$popular_property->location}}</a></h3>
-                            <div class="properties"><a href="#"> {{$popular_property->likes()->count()}} likes</a></div>
-                            <div class="view-all"><a href="{{route('property.more.detail',$popular_property->id)}}">View Detail</a></div>
+                            <span class="category">{{$popular_property->property->comments()->count()}} Comments</span>
+                            <h3 class="place"><a href="#">{{$popular_property->property->property_type}}</a></h3>
+                            <div class="properties"><a href="#"> {{$popular_property->property->views()}} views</a></div>
+                            <div class="view-all"><a href="{{route('property.detail',$popular_property->property_id)}}">View Detail</a></div>
                         </div>
                     </div>
                 </div>
@@ -427,16 +445,16 @@
                  </div>
               
                 @endforelse
-                @forelse($popular_properties_small as $popular_property_small)
+                @forelse($popular_properties->skip(5)->limit(4)->get() as $popular_property)
                  <!-- Portfolio Item -->
                 <div class="popular-item masonry-item small-item">
                     <div class="image-box">
-                        <figure class="image"><img src="{{$popular_property_small->image}}" alt="" style="max-height:255px;min-height:255px"></figure>
+                        <figure class="image"><img src="{{$popular_property->property->image}}" alt="" style="max-height:255px;min-height:255px"></figure>
                         <div class="info-box">
-                            <span class="category">{{$popular_property_small->comments()->count()}} Comments</span>
-                            <h3 class="place"><a href="#">{{$popular_property_small->location}}</a></h3>
-                            <div class="properties"><a href="#"> {{$popular_property_small->likes()->count()}} likes</a></div>
-                            <div class="view-all"><a href="{{route('property.more.detail',$popular_property_small->id)}}">View Detail</a></div>
+                            <span class="category">{{$popular_property->property->comments()->count()}} Comments</span>
+                            <h3 class="place"><a href="#">{{$popular_property->property->property_type}}</a></h3>
+                            <div class="properties"><a href="#"> {{$popular_property->property->views()}} views</a></div>
+                            <div class="view-all"><a href="{{route('property.detail',$popular_property->property_id)}}">View Detail</a></div>
                         </div>
                     </div>
                 </div>
@@ -466,11 +484,11 @@
 
             <div class="agents-carousel owl-carousel owl-theme">
                 <!-- Agent Block -->
-                @forelse($agents as $agent)
+                @forelse($agents->get() as $agent)
                 <div class="agent-block">
                     <div class="inner-box">
                         <div class="image-box">
-                            <figure class="image"><a href="{{route('property.detail')}}"><img src="{{$agent->image}}" alt="" style="max-height: 300px;min-height: 300px"></a></figure>
+                            <figure class="image"><a href=""><img src="{{$agent->image}}" alt="" style="max-height: 300px;min-height: 300px"></a></figure>
                             <ul class="social-links">
                                 <li><a href="#"><i class="la la-facebook-f"></i></a></li>
                                 <li><a href="#"><i class="la la-twitter"></i></a></li>
@@ -480,7 +498,7 @@
                             </ul>
                         </div>
                         <div class="info-box">
-                            <h4 class="name"><a href="{{route('agent.full.detail',$agent->id)}}">{{$agent->name}}</a></h4>
+                            <h4 class="name"><a href="{{route('agent.detail',$agent->id)}}">{{$agent->name}}</a></h4>
                             <span class="designation">Real Estate Agent</span>
                         </div>
                     </div>
@@ -544,9 +562,9 @@
                     <div class="inner-box">
                         <div class="image-box">
                             <div class="single-item-carousel owl-carousel owl-theme">
-                                <figure class="image"><a href="{{route('blog.detail')}}"><img src="images/resource/news-1.jpg" alt=""></a></figure>
-                                <figure class="image"><a href="{{route('blog.detail')}}"><img src="images/resource/news-2.jpg" alt=""></a></figure>
-                                <figure class="image"><a href="{{route('blog.detail')}}"><img src="images/resource/news-3.jpg" alt=""></a></figure>
+                                <figure class="image"><a href=""><img src="images/resource/news-1.jpg" alt=""></a></figure>
+                                <figure class="image"><a href=""><img src="images/resource/news-2.jpg" alt=""></a></figure>
+                                <figure class="image"><a href=""><img src="images/resource/news-3.jpg" alt=""></a></figure>
                             </div>
                         </div>
                         <div class="lower-content">

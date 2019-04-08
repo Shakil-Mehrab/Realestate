@@ -1,3 +1,7 @@
+@php 
+use App\Model\Category;
+$categories=Category::all();
+@endphp
 <div class="header-lower">
     <div class="main-box">
         <div class="auto-container">
@@ -20,41 +24,20 @@
                             <ul class="navigation clearfix">
                                 <li class="current dropdown"><a href="#">Home</a>
                                     <ul>
-                                        <li class="dropdown"><a href="#">Apartment</a>
+                                        @forelse($categories as $category)
+                                        <li class="dropdown"><a href="#">{{$category->name}}</a>
                                             <ul>
                                                 <li><a href="{{route('header.one')}}">Rent</a></li>
                                                 <li><a href="{{route('header.two')}}">Sale</a></li>
                                              
                                             </ul>
                                         </li>
-                                        <li class="dropdown"><a href="#">Flat</a>
-                                            <ul>
-                                                <li><a href="{{route('header.one')}}">Rent</a></li>
-                                                <li><a href="{{route('header.two')}}">Sale</a></li>
-                                             
-                                            </ul>
+                                        @empty
+                                         <li class="dropdown"><a href="#">No Category</a>
+                                            
                                         </li>
-                                        <li class="dropdown"><a href="#">Residentisal</a>
-                                            <ul>
-                                                <li><a href="{{route('header.one')}}">Rent</a></li>
-                                                <li><a href="{{route('header.two')}}">Sale</a></li>
-                                             
-                                            </ul>
-                                        </li>
-                                        <li class="dropdown"><a href="#">Office</a>
-                                            <ul>
-                                                <li><a href="{{route('header.one')}}">Rent</a></li>
-                                                <li><a href="{{route('header.two')}}">Sale</a></li>
-                                             
-                                            </ul>
-                                        </li>
-                                        <li class="dropdown"><a href="#">Cottage</a>
-                                            <ul>
-                                                <li><a href="{{route('header.one')}}">Rent</a></li>
-                                                <li><a href="{{route('header.two')}}">Sale</a></li>
-                                             
-                                            </ul>
-                                        </li>
+                                        @endforelse
+                                        
                                         <li class="dropdown"><a href="#">Videos</a>
                                             <ul>
                                                 <li><a href="{{route('header.six')}}">Rent</a></li>
@@ -72,7 +55,7 @@
                                 </li>
                                 <li class="dropdown"><a href="#">Agents</a>
                                     <ul>
-                                        <li><a href="{{route('agent')}}"">Agents</a></li>
+                                        <li><a href="{{route('front.agent')}}">Agents</a></li>
                                     </ul>
                                 </li>
                                 <li class="dropdown"><a href="#">Properties</a>
@@ -80,6 +63,7 @@
                                         <li><a href="{{route('all.properties')}}">Properties</a></li>
                                         <li><a href="{{route('property.list.view')}}">Property List View</a></li>
                                         <li><a href="{{route('property.grid.view')}}">Property Grid View</a></li>
+                                        <li><a href="{{route('property.modern.view')}}">Property Modern View</a></li>
                                      
                                       
                                     </ul>
@@ -102,31 +86,14 @@
                                         @endauth
                                     
                                  @endif
-                            </ul>              
+                            </ul>  
+                              <ul class="navigation clearfix">
+                                 @include('front.includes.algolia.search')
+                            </ul>            
                         </div>
                     </nav><!-- Main Menu End-->
                         
-                    <!-- Main Menu End-->
-                    <div class="outer-box clearfix">
-                        <!--Search Box-->
-                        <div class="search-box-outer">
-                            <div class="dropdown">
-                                <button class="search-box-btn dropdown-toggle" type="button" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="la la-search"></span></button>
-                                <ul class="dropdown-menu pull-right search-panel" aria-labelledby="dropdownMenu3">
-                                    <li class="panel-outer">
-                                        <div class="form-container">
-                                            <form method="post" action="https://expert-themes.com/html/ourland/blog.html">
-                                                <div class="form-group">
-                                                    <input type="search" name="field-name" value="" placeholder="Search Here" required>
-                                                    <button type="submit" class="search-btn"><span class="la la-search"></span></button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                   
                 </div>
             </div>
         </div>

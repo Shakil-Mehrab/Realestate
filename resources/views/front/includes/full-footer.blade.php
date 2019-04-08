@@ -139,8 +139,8 @@
                            <li><a href="index-2.html">Home</a></li> 
                            <li><a href="{{route('properties')}}">Properties</a></li> 
                            <li><a href="{{route('properties')}}">Agencies</a></li> 
-                           <li><a href="{{route('agent')}}">Agent</a></li> 
-                           <li><a href="{{route('agent')}}">Blogs</a></li> 
+                           <li><a href="{{route('front.agent')}}">Agent</a></li> 
+                           <li><a href="{{route('front.agent')}}">Blogs</a></li> 
                            <li><a href="{{route('contact')}}">Contact</a></li> 
                         </ul>
                     </div>

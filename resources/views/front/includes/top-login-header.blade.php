@@ -19,7 +19,7 @@
 					   @endif
                     </ul>
                     <div class="btn-box">
-                        <a <a href="{{route('property.input')}}" class="theme-btn btn-style-two">Add Property</a>
+                        <a href="{{route('property.input')}}" class="theme-btn btn-style-two">Add Property</a>
                     </div>
                 </div>
             </div>

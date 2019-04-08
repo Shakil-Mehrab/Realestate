@@ -2,14 +2,15 @@
         <div class="dashboard-inner">
             <div class="cross-icon"><span class="pe-7s-close-circle"></span></div>
             <ul class="navigation">
-                <li class="active"><a href="{{route('home')}}"><i class="pe-7s-culture"></i> Dashboard</a></li>
+                <li class="active"><a href="{{route('admin.dashboard')}}"><i class="pe-7s-culture"></i> Dashboard</a></li>
                 <li><a href="{{route('message')}}"><i class="pe-7s-mail"></i> Messages <span class="tag">6</span></a></li>
                 <li><a href="{{route('bookings')}}"><i class="pe-7s-date"></i>Bookings</a></li>
                 <li><a href="{{route('my.properties')}}"><i class="pe-7s-diamond"></i>My Properties</a></li>
                 <li><a href="{{route('my.invoices')}}"><i class="pe-7s-note2"></i>My Invoices</a></li>
                 <li><a href="{{route('favourited.properties')}}"><i class="pe-7s-like2"></i>Favorited Properties</a></li>
+                <li><a href="{{route('category.index')}}"><i class="pe-7s-up-arrow"></i>Category</a></li>
                 <li><a href="{{route('property.input')}}"><i class="pe-7s-up-arrow"></i>Submit Property</a></li>
-                <li><a href="{{route('create.agent')}}"><i class="pe-7s-up-arrow"></i>Create Agent</a></li>
+                <li><a href="{{route('agent.index')}}"><i class="pe-7s-up-arrow"></i>Agents</a></li>
                 <li><a href="{{route('my.profile')}}"><i class="pe-7s-user"></i>My Profile</a></li>
                 <li> {{--   logout --}}
                     <a class="dropdown-item" href="{{ route('admin.logout') }}"

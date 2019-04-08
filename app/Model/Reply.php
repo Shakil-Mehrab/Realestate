@@ -7,10 +7,9 @@ use App\Comment;
 use App\Model\Property;
 use App\User;
 
-
-
 class Reply extends Model
 {
+	 protected $fillable=['comment_id','user_id','star','body'];
      public function property(){
         return $this->belongsTo(Property::class);
     }

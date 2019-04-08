@@ -15,10 +15,12 @@ class CreateMediaTable extends Migration
     {
         Schema::create('media', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id');
-            $table->integer('property_id');
+            $table->integer('user_id')->unsigned();
+            $table->integer('property_id')->unsigned();
             $table->string('image')->default('default.jpg');
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('property_id')->references('id')->on('properties')->onDelete('cascade');
         });
     }
 

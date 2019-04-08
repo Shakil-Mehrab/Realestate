@@ -36,7 +36,7 @@
                 </div>
             </li>
 
-             <li class="dropdown option-box" id='markasread' onclick="markNotificationAsRead('{{count(auth()->user()->unreadNotifications)}}')">
+            {{--  <li class="dropdown option-box" id='markasread' onclick="markNotificationAsRead('{{count(auth()->user()->unreadNotifications)}}')">
                 <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">  <span class="glyphicon glyphicon-globe"></span> Notifications <span class="badge">{{count(auth()->user()->unreadNotifications)}}</span></a>
                    
                 <div class="dropdown-menu">
@@ -47,7 +47,7 @@
                         @endforelse
                  
                 </div>
-            </li>
+            </li> --}}
             <li class="submit-property">
             	<a href="{{route('property.input')}}" class="theme-btn btn-style-one">Submit Property <i class="pe-7s-up-arrow"></i></a>
             </li>
